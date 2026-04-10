@@ -48,3 +48,29 @@ src/
 Este frontend consome uma API desenvolvida com Node.js, Express e Prisma.
 
 https://github.com/viniciusvilelaa/FinaceOrganizer
+
+---
+
+## 🔐 Autenticação
+
+Após o login:
+
+- O token JWT é salvo no `localStorage`
+- Rotas protegidas são liberadas automaticamente
+- Usuário é redirecionado para o dashboard
+
+---
+
+## Melhorias futuras
+
+- Gráficos (Chart.js ou Recharts)
+- Filtro por período (mensal/semanal)
+- Categorias de transações
+- Dark mode
+- Refresh Token
+
+---
+
+## Status do Projeto
+
+Em desenvolvimento
