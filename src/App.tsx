@@ -1,8 +1,13 @@
 import './utils/reset.css'
 import './App.css'
 import { AppRoutes } from './routes/AppRoutes'
+import { AuthProvider } from './context/apiContext'
 
 export default function App() {
-  return <AppRoutes />
+  return (
+    <AuthProvider>
+      <AppRoutes/>
+    </AuthProvider>
+  )
   
 }
