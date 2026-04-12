@@ -1,38 +1,29 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useAuth } from '../../context/apiContext';
+
 
 export default function Login() {
-  const navigate = useNavigate();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [error, setError] = useState();
+
+  const navigate = useNavigate();
+  const { login } = useAuth();
 
   async function handleLogin(e) {
     e.preventDefault();
 
     try {
-      const response = await axios.post("http://localhost:3000/api/users/login", {
-        email,
-        password,
-      });
-
-      const { token, user } = response.data;
-
-      
-      // salva no localStorage
-      localStorage.setItem("token", token);
-      localStorage.setItem("user", JSON.stringify(user));
-
-      // redireciona
+      login(email, password);
       navigate("/home");
-
-    } catch (e) {
-      setError("Email ou senha inválidos");
+    } catch (err) {
+      setError(err.message);
     }
   }
-
+  
   return (
     <div style={{ padding: "20px" }}>
       <h1>Login</h1>

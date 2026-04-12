@@ -38,8 +38,8 @@ export function AuthProvider({children}){
     }
 
     async function register(name, email, password){
-        await api.post('/users', name, email, password);
-        await api.post("users/login", email, password);
+        await api.post('/users', {name, email, password});
+        await login(email, password);
 
     }
 
@@ -53,7 +53,7 @@ export function AuthProvider({children}){
     }
 
     return (
-        <AuthContext.Provider value={{user, token, isAuthenticatedisAuthenticated: !!token, loading, login, logout, register }}>
+        <AuthContext.Provider value={{user, token, isAuthenticated: !!token, loading, login, logout, register }}>
 
             {children}
         </AuthContext.Provider>
