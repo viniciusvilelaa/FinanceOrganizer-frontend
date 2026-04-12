@@ -1,5 +1,4 @@
-
-
+import './utils/reset.css'
 import './App.css'
 import { AppRoutes } from './routes/AppRoutes'
 
