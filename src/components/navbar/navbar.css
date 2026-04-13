@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
+
+.navbar-container {
+    font-family: 'Inter', sans-serif;
+    color: #3870EA;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 1.5rem;
+
+
+}
+
+.navbar--title {
+    font-weight: 600;
+    font-family: "Manrope", sans-serif;
+    margin-right: 2rem;
+    font-size: 1.3rem;
+}
+
+.navbar-left {
+    display: flex;
+    align-items: center;
+
+}
+
+.navbar-container-links {
+    display: flex;
+    color: #C5C6C8;
+    gap: 1rem;
+
+}
+
+.navbar-container-links p {
+    font-weight: 300;
+    padding: .5rem;
+    cursor: pointer;
+    color: #3870EA;
+    border-bottom: 2px solid transparent;
+    /* reserva o espaço sempre */
+    transition: border-color 0.2s ease;
+
+}
+
+.navbar-container-links p:hover {
+
+    border-color: #3870EA;
+}
+
+.navbar-right p {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #5C8CFF;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    border: 3px solid #3870EA;
+}
+
+.navbar-right p:hover {
+    background: #3a6bdf;
+}
