@@ -1,8 +1,7 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import '../Login/login.css';
 import { useAuth } from '../../context/apiContext';
-
 
 export default function Login() {
 
@@ -12,6 +11,14 @@ export default function Login() {
 
   const navigate = useNavigate();
   const { login } = useAuth();
+
+  useEffect(()=>{
+    document.body.classList.add('login-bg');
+
+    return () => {
+      document.body.classList.remove('login-bg');
+    }
+  });
 
   async function handleLogin(e) {
     e.preventDefault();
@@ -23,32 +30,37 @@ export default function Login() {
       setError(err.message);
     }
   }
-  
+
   return (
-    <div style={{ padding: "20px" }}>
-      <h1>Login</h1>
+    <div className="login-container">
+      <div className="form-header">
+        <h1>Login</h1>
+      </div>
 
       <form onSubmit={handleLogin}>
-        <div>
-          <label>Email:</label><br />
+        <div className="input-container">
           <input
+            placeholder="Email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
+            required
           />
-        </div>
-
-        <div>
-          <label>Senha:</label><br />
           <input
+            placeholder="Password"
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            required
           />
         </div>
 
-        <button type="submit">Entrar</button>
+
+        <button className="submit" type="submit">Entrar</button>
       </form>
+      <div className="signup">
+        Não tem uma conta? <a href="#">Clique aqui</a>
+      </div>
 
       {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
