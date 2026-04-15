@@ -3,23 +3,41 @@ import React from 'react';
 import { useEffect, useState } from 'react';
 import { summaryHook } from '../../hooks/summaryHook';
 import { Navbar } from '../../components/navbar/navbar';
+import BalanceCard from '../../components/balanceCard/balanceCard';
 
 
 export default function Home() {
-    const {summary, loading} = summaryHook();
+    const { summary, loading } = summaryHook();
 
-    if(loading) return <p>Carregando</p>
+    if (loading) return <p>Carregando</p>
 
 
     return (
-        <div>
-            <Navbar/>
-            <h1>Finance App - Home</h1>
-            <p>Saldo total: {summary.totalBalance}</p>
-            <p>Saldo receitas: {summary.totalIncome}</p>
-            <p>Saldo despesas: {summary.totalExpense}</p>
+        <div className="flex flex-col h-screen">
+            {/* Navbar */}
+            <Navbar />
+
+            {/* Conteúdo */}
+            <div className="grid grid-cols-12 flex-1">
+
+                {/* ESQUERDA */}
+                <aside className="col-span-3 bg-gray-100 p-4">
+                    Sidebar
+                </aside>
+
+                {/* MEIO */}
+                <main className="col-span-6  mt-15 p-6 bg-white">
+                    <BalanceCard total={summary.totalBalance}/>
+                </main>
+
+                {/* DIREITA */}
+                <section className="col-span-3 bg-gray-100 p-4">
+                    
+                </section>
+
+            </div>
         </div>
-        
+
 
     );
 }

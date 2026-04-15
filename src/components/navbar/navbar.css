@@ -3,14 +3,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');
 
 .navbar-container {
+    background-color: #f8f9fb;
     font-family: 'Inter', sans-serif;
     color: #3870EA;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 1.5rem 1.5rem;
-
-
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 1px 10px 0px;
+    z-index: 999999;
 }
 
 .navbar--title {
