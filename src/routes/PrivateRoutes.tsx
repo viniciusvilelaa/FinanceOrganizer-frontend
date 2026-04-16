@@ -6,7 +6,7 @@ export function PrivateRoutes({ children }: { children: React.ReactNode }) {
 
     if(loading) return <div>Carregando...</div>;
 
-    if(!isAuthenticated) return <Navigate to="/login" replace/>
+    if(!isAuthenticated) return <Navigate to="/" replace/>
     
     return children;
 }
