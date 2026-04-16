@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import "../navbar/navbar.css";
+import { Logout } from "../../utils/logout";
 
 export function Navbar(){
     const navigate = useNavigate();
@@ -11,8 +12,8 @@ export function Navbar(){
             <div className="navbar-left">
                 <h2 className="navbar--title">Finance App</h2>
                 <div className="navbar-container-links">
-                    <p>Dashboard</p>
-                    <p>Transactions</p>
+                    <p onClick={()=> navigate('/home')}>Dashboard</p>
+                    <p onClick={()=> navigate('/transactions')}>Transactions</p>
                     <p>Analytics</p>
                 </div>
             </div>

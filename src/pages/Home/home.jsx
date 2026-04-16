@@ -4,13 +4,16 @@ import { useEffect, useState } from 'react';
 import { summaryHook } from '../../hooks/summaryHook';
 import { Navbar } from '../../components/navbar/navbar';
 import BalanceCard from '../../components/balanceCard/balanceCard';
+import RecentTransactions from '../../components/recentTransactions/recentTransactions';
+import { transactionsHook } from '../../hooks/transactionsHook';
 
 
 export default function Home() {
     const { summary, loading } = summaryHook();
+    const { transactions, loadingTransaction } = transactionsHook();
 
     if (loading) return <p>Carregando</p>
-
+    if (loadingTransaction) return <p>Carregando</p>
 
     return (
         <div className="flex flex-col h-screen">
@@ -27,12 +30,14 @@ export default function Home() {
 
                 {/* MEIO */}
                 <main className="col-span-6  mt-15 p-6 bg-white">
-                    <BalanceCard total={summary.totalBalance}/>
+                    <BalanceCard total={summary.totalBalance} />
+                    <br></br>
+                    <RecentTransactions transactions={transactions}/>
                 </main>
 
                 {/* DIREITA */}
                 <section className="col-span-3 bg-gray-100 p-4">
-                    
+
                 </section>
 
             </div>
