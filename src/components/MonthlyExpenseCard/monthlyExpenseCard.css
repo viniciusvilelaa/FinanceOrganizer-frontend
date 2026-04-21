@@ -1,0 +1,38 @@
+.expense-row {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.expense-value {
+    font-size: 1.75rem;
+    font-weight: 300;
+    color: #dc2626;
+}
+
+.expense-badge {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(239, 68, 68, 0.1);
+    border-radius: 999px;
+    padding: 4px 10px;
+}
+
+.expense-arrow {
+    font-size: 0.8rem;
+    color: #dc2626;
+    font-weight: 700;
+    justify-content: space-between;
+}
+
+.expense-card-container{
+    margin-top: 60px;
+}
+
+.expense-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #dc2626;
+}
+

@@ -6,11 +6,14 @@ import { Navbar } from '../../components/navbar/navbar';
 import BalanceCard from '../../components/balanceCard/balanceCard';
 import RecentTransactions from '../../components/recentTransactions/recentTransactions';
 import { transactionsHook } from '../../hooks/transactionsHook';
+import MonthlyExpenseCard from '../../components/MonthlyExpenseCard/MonthlyExpenseCard';
+import { monthlyBalanceHook } from '../../hooks/monthlyBalanceHook';
 
 
 export default function Home() {
     const { summary, loading } = summaryHook();
     const { transactions, loadingTransaction } = transactionsHook();
+    const {monthlyBalance, loadingBalances} = monthlyBalanceHook();
 
     if (loading) return <p>Carregando</p>
     if (loadingTransaction) return <p>Carregando</p>
@@ -36,8 +39,8 @@ export default function Home() {
                 </main>
 
                 {/* DIREITA */}
-                <section className="col-span-3 bg-gray-100 p-4">
-
+                <section className="col-span-3 bg-white p-6 mt-15">
+                    <MonthlyExpenseCard totalExpense={monthlyBalance.totalMonthExpense}/>
                 </section>
 
             </div>
