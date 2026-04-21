@@ -39,8 +39,8 @@ export default function Home() {
                 </main>
 
                 {/* DIREITA */}
-                <section className="col-span-3 bg-white p-6 ">
-                    <MonthlyExpenseCard totalExpense={monthlyBalance.totalMonthExpense}/>
+                <section className="col-span-3 bg-white p-6 mt-15 ">
+                    <MonthlyExpenseCard totalBalance={monthlyBalance.totalMonthIncome} type={"INCOME"}/>
                 </section>
 
             </div>
