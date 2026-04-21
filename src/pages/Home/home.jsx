@@ -1,13 +1,13 @@
 import { useAuth } from '../../context/apiContext';
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { summaryHook } from '../../hooks/summaryHook';
+import { summaryHook } from '../../hooks/useSummary';
 import { Navbar } from '../../components/navbar/navbar';
 import BalanceCard from '../../components/balanceCard/balanceCard';
 import RecentTransactions from '../../components/recentTransactions/recentTransactions';
-import { transactionsHook } from '../../hooks/transactionsHook';
+import { transactionsHook } from '../../hooks/useTransactions';
 import MonthlyExpenseCard from '../../components/MonthlyExpenseCard/MonthlyExpenseCard';
-import { monthlyBalanceHook } from '../../hooks/monthlyBalanceHook';
+import { monthlyBalanceHook } from '../../hooks/useMonthlyBalance';
 
 
 export default function Home() {
@@ -15,8 +15,8 @@ export default function Home() {
     const { transactions, loadingTransaction } = transactionsHook();
     const {monthlyBalance, loadingBalances} = monthlyBalanceHook();
 
-    if (loading) return <p>Carregando</p>
-    if (loadingTransaction) return <p>Carregando</p>
+    if (loading) return null
+    if(loadingBalances) return null
 
     return (
         <div className="flex flex-col h-screen">
@@ -39,7 +39,7 @@ export default function Home() {
                 </main>
 
                 {/* DIREITA */}
-                <section className="col-span-3 bg-white p-6 mt-15">
+                <section className="col-span-3 bg-white p-6 ">
                     <MonthlyExpenseCard totalExpense={monthlyBalance.totalMonthExpense}/>
                 </section>
 

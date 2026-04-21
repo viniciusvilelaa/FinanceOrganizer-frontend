@@ -8,7 +8,7 @@ export default function MonthlyExpenseCard({ totalExpense, type }) {
   }
 
   return (
-    <div className="bg-white rounded-xl p-[25px] text-left w-full card-container expense-card-container">
+    <div className="bg-white rounded-xl p-[25px] text-left w-full card-container expense-card-container mt-0">
       <h1 className="text-sm font-normal text-gray-400 uppercase tracking-wider mb-2">
         Monthly Expense
       </h1>
