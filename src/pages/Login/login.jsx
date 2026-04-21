@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import '../Login/login.css';
 import { useAuth } from '../../context/apiContext';
+import { Logout } from "../../utils/logout";
 
 export default function Login() {
 
@@ -10,7 +11,9 @@ export default function Login() {
   const [error, setError] = useState();
 
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, logout} = useAuth();
+
+  logout();
 
   useEffect(()=>{
     document.body.classList.add('login-bg');
