@@ -13,21 +13,22 @@ export default function Login() {
   const navigate = useNavigate();
   const { login, logout} = useAuth();
 
-  logout();
+  
 
   useEffect(()=>{
     document.body.classList.add('login-bg');
+    logout();
 
     return () => {
       document.body.classList.remove('login-bg');
     }
-  });
+  }, []);
 
   async function handleLogin(e) {
     e.preventDefault();
 
     try {
-      login(email, password);
+      await login(email, password);
       navigate("/home");
     } catch (err) {
       setError(err.message);
@@ -61,11 +62,12 @@ export default function Login() {
 
         <button className="submit" type="submit">Entrar</button>
       </form>
+      {error && <p style={{ color: "red" }}>{error}</p>}
       <div className="signup">
         Não tem uma conta? <a href="#">Clique aqui</a>
       </div>
 
-      {error && <p style={{ color: "red" }}>{error}</p>}
+      
     </div>
   );
 }

@@ -31,7 +31,7 @@ export function AuthProvider({ children }) {
         const interceptor = api.interceptors.response.use(
             (response) => response,
             (error) => {
-                if (error.response?.status == 401){
+                if (error.response?.status == 401) {
                     logout();
                 }
                 return Promise.reject(error);
@@ -42,14 +42,26 @@ export function AuthProvider({ children }) {
     });
 
     async function login(email, password) {
-        const { data } = await api.post("/users/login", { email, password });
+        try {
+            const { data } = await api.post("/users/login", { email, password });
 
-        setToken(data.token);
-        setUser(data.user);
-        api.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
+            setToken(data.token);
+            setUser(data.user);
+            api.defaults.headers.common['Authorization'] = `Bearer ${data.token}`;
 
-        localStorage.setItem("token", data.token);
-        localStorage.setItem("user", JSON.stringify(data.user));
+            localStorage.setItem("token", data.token);
+            localStorage.setItem("user", JSON.stringify(data.user));
+        } catch(err) {
+            if(err.response?.status === 401){
+                throw new Error("Invalid credentials");
+            }
+            
+            throw new Error("Error to acess server");
+
+        }
+        
+
+
 
     }
 
