@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 import React from 'react'
 
-export function summaryHook() {
+export function useSummary() {
     const [summary, setSummary] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
