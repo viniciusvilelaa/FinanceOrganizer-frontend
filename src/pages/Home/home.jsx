@@ -8,12 +8,13 @@ import RecentTransactions from '../../components/recentTransactions/recentTransa
 import { useTransactions } from '../../hooks/useTransactions';
 import MonthlyExpenseCard from '../../components/MonthlyExpenseCard/MonthlyExpenseCard';
 import { useMonthlyBalance } from '../../hooks/useMonthlyBalance';
+import { Sidebar } from '../../components/sidebar/sidebar';
 
 
 export default function Home() {
     const { summary, loading } = useSummary();
-    const { transactions, loadingTransaction } = useTransactions();
-    const {monthlyBalance, loadingBalances} = useMonthlyBalance();
+    const { transactions, loading: loadingTransaction } = useTransactions();
+    const {monthlyBalance, loading: loadingBalances} = useMonthlyBalance();
 
     if (loading || loadingBalances || loadingTransaction) return null
 
@@ -26,8 +27,8 @@ export default function Home() {
             <div className="grid grid-cols-12 flex-1">
 
                 {/* ESQUERDA */}
-                <aside className="col-span-3 bg-gray-100 p-4">
-                    Sidebar
+                <aside className="col-span-3 bg-white">
+                    <Sidebar/>
                 </aside>
 
                 {/* MEIO */}
