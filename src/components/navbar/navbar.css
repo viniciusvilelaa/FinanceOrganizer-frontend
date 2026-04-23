@@ -69,3 +69,9 @@
 .navbar-right p:hover {
     background: #3a6bdf;
 }
+
+.navbar-logo {
+    height: 45px; /* Define um tamanho agradável para a logo */
+    max-width: 100%;
+    object-fit: contain;
+}

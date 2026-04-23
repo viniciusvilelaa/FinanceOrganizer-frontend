@@ -38,7 +38,8 @@ export default function Login() {
   return (
     <div className="login-container">
       <div className="form-header">
-        <h1>Login</h1>
+        <h1>Welcome Back</h1>
+        <p className="text-gray-500 text-sm">Enter your credentials</p>
       </div>
 
       <form onSubmit={handleLogin}>
