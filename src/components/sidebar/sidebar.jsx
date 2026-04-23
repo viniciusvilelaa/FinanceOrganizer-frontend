@@ -9,7 +9,7 @@ export function Sidebar() {
     return (
         <div className="sidebar-container">
             <div className="sidebar-top">
-                <h2 className="sidebar-title">Finance App</h2>
+                
                 <div className="sidebar-links">
                     <p 
                         className={location.pathname === '/home' ? 'active' : ''} 
