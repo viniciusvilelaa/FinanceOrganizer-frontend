@@ -65,7 +65,7 @@ export default function Login() {
       </form>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <div className="signup">
-        Não tem uma conta? <a href="#">Clique aqui</a>
+        Não tem uma conta? <a href="#" onClick={() => navigate("/register")}>Clique aqui</a>
       </div>
 
       
