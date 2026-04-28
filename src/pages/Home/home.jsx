@@ -15,7 +15,7 @@ export default function Home() {
     return (
         <>
             {/* MEIO (Ocupa 6 colunas relativas ao container de 9 colunas) */}
-            <main className="col-span-6 mt-15 p-6 bg-white">
+            <main className="col-span-6 mt-15 ml-1 p-6 bg-white">
                 <BalanceCard total={summary.totalBalance} />
                 <br></br>
                 <RecentTransactions transactions={transactions}/>
