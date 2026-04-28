@@ -1,7 +1,14 @@
 import React from 'react';
 import NewTransactionCard from '../../components/NewTransactionCard/NewTransactionCard';
+import RecentTransactions from '../../components/recentTransactions/recentTransactions';
+import { useTransactions } from '../../hooks/useTransactions';
+
 
 export default function TransactionRegister() {
+    const { transactions, loading: loadingTransaction } = useTransactions();
+
+    if(loadingTransaction) return null
+
     return (
          <>
                     {/* MEIO (Ocupa 6 colunas relativas ao container de 9 colunas) */}
@@ -14,8 +21,8 @@ export default function TransactionRegister() {
                     </main>
         
                     {/* DIREITA (Ocupa 3 colunas relativas ao container de 9 colunas) */}
-                    <section className="col-span-3 bg-white p-6 mt-15 flex flex-col gap-4">
-                        
+                    <section className="col-span-3 bg-white p-6 mt-[128px] flex flex-col gap-4">
+                        <RecentTransactions transactions={transactions}></RecentTransactions>
                     </section>
                 </>
     );

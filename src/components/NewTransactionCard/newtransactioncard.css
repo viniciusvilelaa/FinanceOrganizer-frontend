@@ -1,0 +1,155 @@
+.nt-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.nt-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.nt-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #94a3b8;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.nt-type-buttons {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.nt-type-btn {
+  flex: 1;
+  padding: 0.55rem 0;
+  border-radius: 8px;
+  border: 1.5px solid #e2e8f0;
+  background: transparent;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nt-type-btn:hover {
+  border-color: #cbd5e1;
+  color: #64748b;
+}
+
+.active-income {
+  border-color: #16a34a !important;
+  background: rgba(34, 197, 94, 0.08) !important;
+  color: #16a34a !important;
+}
+
+.active-expense {
+  border-color: #dc2626 !important;
+  background: rgba(239, 68, 68, 0.08) !important;
+  color: #dc2626 !important;
+}
+
+.nt-amount-wrapper {
+  display: flex;
+  align-items: center;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: border-color 0.2s;
+}
+
+.nt-amount-wrapper:focus-within {
+  border-color: #3870EA;
+}
+
+.nt-currency {
+  padding: 0 0.75rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #64748b;
+  background: #f8fafc;
+  border-right: 1.5px solid #e2e8f0;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.nt-amount-input {
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+.nt-amount-input:focus {
+  box-shadow: none !important;
+}
+
+.nt-input {
+  padding: 0.6rem 0.85rem;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  color: #1e293b;
+  outline: none;
+  width: 100%;
+  transition: border-color 0.2s;
+  background: white;
+  box-sizing: border-box;
+}
+
+.nt-input:focus {
+  border-color: #3870EA;
+}
+
+.nt-select {
+  cursor: pointer;
+}
+
+.nt-textarea {
+  resize: none;
+  font-family: inherit;
+}
+
+.nt-row {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.nt-half {
+  flex: 1;
+}
+
+.nt-submit {
+  width: 100%;
+  padding: 0.7rem;
+  border-radius: 8px;
+  border: none;
+  background: #3870EA;
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+  margin-top: 0.3rem;
+}
+
+.nt-submit:hover {
+  opacity: 0.88;
+}
+
+.nt-error {
+  font-size: 0.82rem;
+  color: #dc2626;
+  text-align: center;
+  margin-top: 0.25rem;
+}
+
+.nt-success {
+  font-size: 0.82rem;
+  color: #16a34a;
+  text-align: center;
+  margin-top: 0.25rem;
+}

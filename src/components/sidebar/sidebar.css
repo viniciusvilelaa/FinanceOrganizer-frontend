@@ -9,7 +9,7 @@
     box-shadow: 2px 0 10px rgba(0, 0, 0, 0.05);
     font-family: 'Inter', sans-serif;
     box-sizing: border-box;
-    z-index: 999999;
+    z-index: 99999;
 }
 
 .sidebar-top {

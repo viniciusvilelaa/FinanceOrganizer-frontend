@@ -4,7 +4,7 @@ import { formatDate } from '../../utils/formatDate';
 
 export default function RecentTransactions({ transactions = [] }) {
   const navigate = useNavigate()
-  const recent = transactions.slice(0, 5).reverse();
+  const recent = transactions.slice(0, 5);
 
   return (
     <div className="bg-white rounded-xl p-[25px] w-full card-container">
