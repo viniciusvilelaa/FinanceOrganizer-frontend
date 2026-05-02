@@ -1,0 +1,67 @@
+.filters-container {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: #f1f5f9;
+  padding: 1rem 1.25rem;
+  border-radius: 16px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.filter-input {
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  border: 1.5px solid #e2e8f0;
+  background: white;
+  font-size: 0.85rem;
+  color: #1e293b;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.filter-input input{
+    width: 45%;
+}
+
+.filter-input:focus {
+  border-color: #3870EA;
+}
+
+.filter-input::placeholder {
+  color: #94a3b8;
+}
+
+.filter-period {
+  display: flex;
+  gap: 0.4rem;
+  margin-left: auto;
+}
+
+.period-btn {
+  padding: 0.5rem 0.9rem;
+  border-radius: 999px;
+  border: 1.5px solid #e2e8f0;
+  background: white;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.period-btn:hover {
+  border-color: #3870EA;
+  color: #3870EA;
+}
+
+.period-active {
+  background: #3870EA;
+  border-color: #3870EA;
+  color: white;
+}
+
+.period-active:hover {
+  color: white;
+}
