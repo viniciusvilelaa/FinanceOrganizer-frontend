@@ -4,26 +4,33 @@ import { useDebounce } from "use-debounce";
 import { useTransactions } from "../../hooks/useTransactions";
 import TransactionFilters from "../TransactionFilters/TransactionFilters";
 import { formatDate } from "../../utils/formatDate";
+import Pagination from "../Pagination/Pagination";
 
 export default function HistoryTransactionCard() {
-
     const [filters, setFilters] = useState({
         description: '',
         type: '',
         category: '',
-        period: ''
+        period: '',
+        page: 1
     });
 
     const [debouncedDescription] = useDebounce(filters.description, 500);
 
-    const { transactions, loading } = useTransactions({
+    const { transactions, loading, meta } = useTransactions({
         ...filters,
-        description: debouncedDescription
+        description: debouncedDescription,
     });
 
     function handleFilterChange(key, value) {
-        setFilters(prev => ({ ...prev, [key]: value }))
+        setFilters(prev => ({ ...prev, [key]: value, page: 1 }));
     }
+
+    function handlePageChange(newPage){
+        setFilters(prev => ({...prev, page: newPage}));
+    }
+
+    const totalPages = meta ? Math.ceil(meta.total / meta.limit) : 1
 
     return (
         <div className="bg-white rounded-xl mt-6">
@@ -67,6 +74,10 @@ export default function HistoryTransactionCard() {
                         ))}
                     </div>
                 )}
+                {console.log(meta)}
+
+                <Pagination currentPage={filters.page} totalPages={totalPages} onPageChange={handlePageChange}></Pagination>
+
             </div>
         </div>
     )

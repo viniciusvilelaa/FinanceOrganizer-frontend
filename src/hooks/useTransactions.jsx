@@ -17,7 +17,7 @@ export function useTransactions(filters = {}) {
                 category: filters.category || undefined,
                 period: filters.period || undefined,
                 page: filters.page || 1,
-                limite: filters.limit || 10
+                limit: filters.limit || 5
             }
         })
             .then(({ data }) => {
@@ -30,7 +30,7 @@ export function useTransactions(filters = {}) {
             })
             .catch((err) => setError(err))
             .finally(() => setLoading(false))
-    }, [filters.description, filters.type, filters.category, filters.period]);
+    }, [filters.description, filters.type, filters.category, filters.period, filters.page]);
 
-    return { transactions, loading, error }
+    return { transactions, loading, error, meta }
 }
