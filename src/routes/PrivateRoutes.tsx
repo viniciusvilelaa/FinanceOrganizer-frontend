@@ -1,10 +1,20 @@
-import { Navigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/apiContext';
 import { Navbar } from '../components/navbar/navbar';
 import { Sidebar } from '../components/sidebar/sidebar';
+import { useEffect } from 'react';
 
 export function PrivateRoutes({ children }: { children: React.ReactNode }) {
     const { isAuthenticated, loading } = useAuth();
+    const navigate = useNavigate();
+
+    
+
+    useEffect(() => {
+        if (!loading && !isAuthenticated) {
+            navigate("/", { replace: true });
+        }
+    }, [loading, isAuthenticated])
 
     if (loading) return <div>Carregando...</div>;
 

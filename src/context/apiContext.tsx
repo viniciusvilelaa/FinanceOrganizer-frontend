@@ -39,7 +39,7 @@ export function AuthProvider({ children }) {
         )
 
         return api.interceptors.response.eject(interceptor);
-    });
+    }, []);
 
     async function login(email, password) {
         try {
@@ -77,6 +77,7 @@ export function AuthProvider({ children }) {
         delete api.defaults.headers.common["Authorization"];
         localStorage.removeItem("token");
         localStorage.removeItem("user");
+        
     }
 
     return (

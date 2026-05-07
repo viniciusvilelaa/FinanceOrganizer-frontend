@@ -9,6 +9,8 @@ export default function Home() {
     const { summary, loading } = useSummary();
     const { transactions, loading: loadingTransaction } = useTransactions();
     const {monthlyBalance, loading: loadingBalances} = useMonthlyBalance();
+    
+    if (!summary || !monthlyBalance) return null
 
     if (loading || loadingBalances || loadingTransaction) return null
 
