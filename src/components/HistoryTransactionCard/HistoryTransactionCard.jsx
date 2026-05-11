@@ -53,7 +53,7 @@ export default function HistoryTransactionCard() {
                 {!loading && transactions.length > 0 && (
                     <div className="flex flex-col gap-3">
                         {transactions.map(t => (
-                            <div key={t.id} className="flex items-center justify-between p-4 border border-gray-100 rounded-xl hover:shadow-sm transition-shadow bg-gray-50/50">
+                            <div key={t.id} className="flex items-center justify-between p-4 border border-gray-100 rounded-xl hover:shadow-sm transition-shadow bg-gray-300/30">
                                 <div className="flex items-center gap-4">
                                     <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold text-lg ${t.type === 'INCOME' ? 'bg-green-100 text-green-600' : 'bg-red-100 text-red-600'}`}>
                                         {t.type === 'INCOME' ? '+' : '-'}

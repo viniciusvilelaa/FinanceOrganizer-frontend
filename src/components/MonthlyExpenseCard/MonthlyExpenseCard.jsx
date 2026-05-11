@@ -1,4 +1,5 @@
 import '../monthlyExpenseCard/monthlyExpenseCard.css'
+import { formatCurrency } from '../../utils/formatCurrency'
 
 export default function MonthlyExpenseCard({ totalBalance, type }) {
   const isIncome = type === 'INCOME'
@@ -10,7 +11,7 @@ export default function MonthlyExpenseCard({ totalBalance, type }) {
       </h1>
       <div className="expense-row">
         <p className={`expense-value ${isIncome ? 'income-value' : 'expense-value-color'}`}>
-          R$ {totalBalance.toFixed(2).replace('.', ',')}
+          {formatCurrency(totalBalance)}
         </p>
         <div className={`expense-badge ${isIncome ? 'income-badge' : 'expense-badge-color'}`}>
           <span className="expense-arrow">{isIncome ? '↑' : '↓'}</span>
