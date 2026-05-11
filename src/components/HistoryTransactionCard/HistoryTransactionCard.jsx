@@ -5,6 +5,7 @@ import { useTransactions } from "../../hooks/useTransactions";
 import TransactionFilters from "../TransactionFilters/TransactionFilters";
 import { formatDate } from "../../utils/formatDate";
 import Pagination from "../Pagination/Pagination";
+import { formatCurrency } from "../../utils/formatCurrency";
 
 export default function HistoryTransactionCard() {
     const [filters, setFilters] = useState({
@@ -68,7 +69,7 @@ export default function HistoryTransactionCard() {
                                     </div>
                                 </div>
                                 <div className={`font-semibold text-lg ${t.type === 'INCOME' ? 'text-green-600' : 'text-red-600'}`}>
-                                    {t.type === 'INCOME' ? '+' : '-'} R$ {Math.abs(t.amount).toFixed(2).replace('.', ',')}
+                                    {t.type === 'INCOME' ? '+' : '-'} {formatCurrency(t.amount)}
                                 </div>
                             </div>
                         ))}

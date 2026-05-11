@@ -8,8 +8,8 @@ import { useMonthlyBalance } from '../../hooks/useMonthlyBalance';
 export default function Home() {
     const { summary, loading } = useSummary();
     const { transactions, loading: loadingTransaction } = useTransactions();
-    const {monthlyBalance, loading: loadingBalances} = useMonthlyBalance();
-    
+    const { monthlyBalance, loading: loadingBalances } = useMonthlyBalance();
+
     if (!summary || !monthlyBalance) return null
 
     if (loading || loadingBalances || loadingTransaction) return null
@@ -20,14 +20,13 @@ export default function Home() {
             <main className="col-span-6 mt-15 ml-2 p-6 bg-white">
                 <BalanceCard total={summary.totalBalance} />
                 <br></br>
-                {console.log()}
-                <RecentTransactions transactions={transactions}/>
+                <RecentTransactions transactions={transactions} />
             </main>
 
             {/* DIREITA (Ocupa 3 colunas relativas ao container de 9 colunas) */}
             <section className="col-span-3 bg-white p-6 mt-15 flex flex-col gap-4">
-                <MonthlyExpenseCard totalBalance={monthlyBalance.totalMonthIncome} type={"INCOME"}/>
-                <MonthlyExpenseCard totalBalance={monthlyBalance.totalMonthExpense} type={"EXPENSE"}/>
+                <MonthlyExpenseCard totalBalance={monthlyBalance.totalMonthIncome} type={"INCOME"} />
+                <MonthlyExpenseCard totalBalance={monthlyBalance.totalMonthExpense} type={"EXPENSE"} />
             </section>
         </>
     );
