@@ -20,6 +20,7 @@ export function PrivateRoutes({ children }: { children: React.ReactNode }) {
 
     if (!isAuthenticated) return <Navigate to="/" replace />
 
+    {console.log(isAuthenticated)}
     return (
         <div className="flex flex-col h-screen">
 

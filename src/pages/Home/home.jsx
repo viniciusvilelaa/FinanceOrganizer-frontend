@@ -20,6 +20,7 @@ export default function Home() {
             <main className="col-span-6 mt-15 ml-2 p-6 bg-white">
                 <BalanceCard total={summary.totalBalance} />
                 <br></br>
+                {console.log()}
                 <RecentTransactions transactions={transactions}/>
             </main>
 

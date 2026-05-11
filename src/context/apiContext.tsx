@@ -31,14 +31,14 @@ export function AuthProvider({ children }) {
         const interceptor = api.interceptors.response.use(
             (response) => response,
             (error) => {
-                if (error.response?.status == 401) {
+                if (error.response?.status === 401) {
                     logout();
                 }
                 return Promise.reject(error);
             }
-        )
+        );
 
-        return api.interceptors.response.eject(interceptor);
+        return () => api.interceptors.response.eject(interceptor);
     }, []);
 
     async function login(email, password) {
