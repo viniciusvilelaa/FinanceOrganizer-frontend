@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom'
 import './recentTransactions.css'
 import { formatDate } from '../../utils/formatDate';
+import { formatCurrency } from '../../utils/formatCurrency';
 
 export default function RecentTransactions({ transactions = [] }) {
   const navigate = useNavigate()
@@ -31,7 +32,7 @@ export default function RecentTransactions({ transactions = [] }) {
               <p className="recent-date">{formatDate(t.date)}</p>
             </div>
             <p className={`recent-amount ${t.type === 'INCOME' ? 'income' : 'expense'}`}>
-              {t.type === 'INCOME' ? '+' : '-'} R$ {Math.abs(t.amount).toFixed(2).replace('.', ',')}
+              {t.type === 'INCOME' ? '+' : '-'} {formatCurrency(t.amount)}
             </p>
           </div>
         ))}

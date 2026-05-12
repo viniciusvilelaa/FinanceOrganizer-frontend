@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import "../NewTransactionCard/newtransactioncard.css"
 import { api } from '../../context/apiContext';
+import { toast } from 'sonner';
 
 export default function NewTransactionCard() {
 
@@ -13,6 +14,8 @@ export default function NewTransactionCard() {
     const [error, setError] = useState('');
     const [sucess, setSucess] = useState('');
 
+    
+
     async function handleSubmit(e) {
         e.preventDefault();
         const payload = { amount: parseFloat(amount), type, category, description, date };
@@ -23,7 +26,9 @@ export default function NewTransactionCard() {
             setDate('');
             setCategory('');
             setDescription('');
+            toast.success("Transaction added successfully!");
         } catch (error) {
+            toast.error("Error adding transaction.");
             if (error.response?.status === 400) {
                 setError("Dados invalidos. Verifique os campos");
             } else if (error.response?.status === 401) {
@@ -36,8 +41,9 @@ export default function NewTransactionCard() {
 
 
     return (
+        
         <div className="bg-white rounded-xl p-[25px] w-full card-container">
-
+            
             <form onSubmit={handleSubmit} className='nt-form'>
 
                 {/*TRANSACTION TYPE*/}
@@ -109,7 +115,7 @@ export default function NewTransactionCard() {
                     />
                 </div>
 
-                <button type="submit" className="nt-submit">
+                <button  type="submit" className="nt-submit">
                     Add Transaction
                 </button>
                 {error && <p className='nt-error'>{error}</p>}
