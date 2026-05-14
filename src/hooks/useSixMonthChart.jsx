@@ -23,6 +23,6 @@ export function useSixMonthChart() {
         }
     }) : null;
 
-    return {dataEnchanced, error, loading}
+    return {dataEnchanced, error, loading}  
 
 }
