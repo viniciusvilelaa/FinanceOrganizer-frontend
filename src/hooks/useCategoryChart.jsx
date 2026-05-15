@@ -45,7 +45,7 @@ export function useCategoryChart() {
         }
     }) : null, [data, totalGeral]);
 
-    const totalFormatted = formatCurrency(totalGeral);
 
-    return { dataEnchanced, totalFormatted, loading, error };
+
+    return { dataEnchanced, loading, error };
 }

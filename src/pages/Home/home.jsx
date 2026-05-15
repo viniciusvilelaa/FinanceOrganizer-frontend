@@ -4,14 +4,17 @@ import RecentTransactions from '../../components/recentTransactions/recentTransa
 import { useTransactions } from '../../hooks/useTransactions';
 import MonthlyExpenseCard from '../../components/MonthlyExpenseCard/MonthlyExpenseCard';
 import { useMonthlyBalance } from '../../hooks/useMonthlyBalance';
+import CategoryPieChart from '../../components/CategoryPieChart/CategoryPieChart';
+import { useCategoryChart } from '../../hooks/useCategoryChart';
 
 export default function Home() {
     const { summary, loading } = useSummary();
     const { transactions, loading: loadingTransaction } = useTransactions();
     const { monthlyBalance, loading: loadingBalances } = useMonthlyBalance();
+    const { dataEnchanced, loading: loadingPieChart} = useCategoryChart()
     if (!summary || !monthlyBalance) return null
 
-    if (loading || loadingBalances || loadingTransaction) return null
+    if (loading || loadingBalances || loadingTransaction, loadingPieChart) return null
 
     return (
         <>
@@ -19,7 +22,7 @@ export default function Home() {
             <main className="col-span-6 mt-15 ml-2 p-6 bg-white">
                 <BalanceCard total={summary.totalBalance} />
                 <br></br>
-                
+                <CategoryPieChart data={dataEnchanced}></CategoryPieChart>
             </main>
 
             {/* DIREITA (Ocupa 3 colunas relativas ao container de 9 colunas) */}
