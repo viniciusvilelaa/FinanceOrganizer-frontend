@@ -6,15 +6,19 @@ import MonthlyExpenseCard from '../../components/MonthlyExpenseCard/MonthlyExpen
 import { useMonthlyBalance } from '../../hooks/useMonthlyBalance';
 import CategoryPieChart from '../../components/CategoryPieChart/CategoryPieChart';
 import { useCategoryChart } from '../../hooks/useCategoryChart';
+import MonthBarChart from '../../components/MonthBarChart/MonthBarChar';
+import { useSixMonthChart } from '../../hooks/useSixMonthChart';
 
 export default function Home() {
     const { summary, loading } = useSummary();
     const { transactions, loading: loadingTransaction } = useTransactions();
     const { monthlyBalance, loading: loadingBalances } = useMonthlyBalance();
-    const { dataEnchanced, loading: loadingPieChart} = useCategoryChart()
+    const { dataEnchanced, loading: loadingPieChart } = useCategoryChart()
+    const { dataMonthChart, loading: loadingBarChart } = useSixMonthChart();
+
     if (!summary || !monthlyBalance) return null
 
-    if (loading || loadingBalances || loadingTransaction, loadingPieChart) return null
+    if (loading || loadingBalances || loadingTransaction || loadingPieChart || loadingBarChart) return null
 
     return (
         <>
@@ -23,6 +27,8 @@ export default function Home() {
                 <BalanceCard total={summary.totalBalance} />
                 <br></br>
                 <CategoryPieChart data={dataEnchanced}></CategoryPieChart>
+                <br></br>
+                <MonthBarChart data={dataMonthChart}></MonthBarChart>
             </main>
 
             {/* DIREITA (Ocupa 3 colunas relativas ao container de 9 colunas) */}
