@@ -1,6 +1,7 @@
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { api } from "../context/apiContext";
 import { formatCurrency } from "../utils/formatCurrency";
+
 export function useSixMonthChart() {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -13,8 +14,8 @@ export function useSixMonthChart() {
             .finally(() => setLoading(false))
     }, []);
 
-    const dataEnchanced = data ? data.map((e)=> {
-        return{
+    const dataMonthChart = data ? data.map((e) => {
+        return {
             month: e.month,
             income: e.income,
             expense: e.expense,
@@ -23,6 +24,6 @@ export function useSixMonthChart() {
         }
     }) : null;
 
-    return {dataEnchanced, error, loading}  
+    return { dataMonthChart, error, loading }
 
 }
