@@ -60,7 +60,12 @@
     flex-direction: column;
 }
 
-.sidebar-logout:hover {
+.sidebar-logout{
     color: #e53e3e;
     background-color: #fff5f5;
+}
+
+.sidebar-logout:hover{
+    
+    background-color: #ffd3d3;
 }

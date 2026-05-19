@@ -23,7 +23,7 @@ export default function Home() {
     return (
         <>
             {/* MEIO (Ocupa 6 colunas relativas ao container de 9 colunas) */}
-            <main className="col-span-6 mt-15 ml-2 p-6 bg-white">
+            <main className="col-span-6 ml-2 p-6 bg-white">
                 <BalanceCard total={summary.totalBalance} />
                 <br></br>
                 <CategoryPieChart data={dataEnchanced}></CategoryPieChart>
@@ -32,7 +32,7 @@ export default function Home() {
             </main>
 
             {/* DIREITA (Ocupa 3 colunas relativas ao container de 9 colunas) */}
-            <section className="col-span-3 bg-white p-6 mt-15 flex flex-col gap-4">
+            <section className="col-span-3 bg-white p-6 flex flex-col gap-4">
                 <MonthlyExpenseCard totalBalance={monthlyBalance.totalMonthIncome} type={"INCOME"} />
                 <MonthlyExpenseCard totalBalance={monthlyBalance.totalMonthExpense} type={"EXPENSE"} />
                 <RecentTransactions transactions={transactions} />

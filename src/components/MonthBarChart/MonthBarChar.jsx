@@ -1,6 +1,4 @@
-import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from "recharts";
-import { formatCurrency } from "../../utils/formatCurrency";
-import { formatShortChurrency } from "../../utils/fomartShortCurrency";
+import { BarChart, Bar, XAxis, Tooltip, CartesianGrid, ResponsiveContainer } from "recharts";
 import { CustomToolTipBar } from "../ToolTip/CustomToolTipBar";
 
 import MonthBarChartSkeleton from "./MonthBarChartSkeleton";
