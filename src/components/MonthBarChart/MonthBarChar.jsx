@@ -3,11 +3,16 @@ import { formatCurrency } from "../../utils/formatCurrency";
 import { formatShortChurrency } from "../../utils/fomartShortCurrency";
 import { CustomToolTipBar } from "../ToolTip/CustomToolTipBar";
 
+import MonthBarChartSkeleton from "./MonthBarChartSkeleton";
+
 const expenseRedColor = "#dc2626";
 const incomeGreenColor = "#16a34a";
 
 export default function MonthBarChart({ data, loading, error }) {
-
+    
+    if (loading) return <MonthBarChartSkeleton />
+    if (error) return `Error: ${error}`
+    if (!data || data.length === 0) return "Empty data"
 
     return (
         <div className="bg-white rounded-xl p-[25px] text-left w-full card-container">
@@ -17,7 +22,6 @@ export default function MonthBarChart({ data, loading, error }) {
                 <BarChart data={data}>
                     <CartesianGrid strokeDasharray="3 3"></CartesianGrid>
                     <XAxis dataKey="month"></XAxis>
-                    <YAxis tickFormatter={formatShortChurrency}></YAxis>
                     <Tooltip content={CustomToolTipBar}></Tooltip>
                     <Bar dataKey="income" fill={incomeGreenColor}></Bar>
                     <Bar dataKey="expense" fill={expenseRedColor}></Bar>
