@@ -1,3 +1,4 @@
+import axios from "axios";
 import { api } from "../context/apiContext";
 import { useState, useEffect } from "react";
 
@@ -10,6 +11,9 @@ export function useTransactions(filters = {}) {
     useEffect(() => {
         setLoading(true);
 
+        const controller = new AbortController();
+        const signal = controller.signal;
+
         api.get('/transactions', {
             params: {
                 description: filters.description || undefined,
@@ -19,7 +23,7 @@ export function useTransactions(filters = {}) {
                 page: filters.page || 1,
                 limit: filters.limit || 5
             }
-        })
+        }, {signal})
             .then(({ data }) => {
                 setTransactions(Array.isArray(data.transactions) ? data.transactions : [])
                 setMeta({
@@ -28,7 +32,11 @@ export function useTransactions(filters = {}) {
                     limit: data.limit
                 })
             })
-            .catch((err) => setError(err))
+            .catch((err) => {
+                if(!axios.isCancel(err)){
+                    setError(err);
+                }
+            })
             .finally(() => setLoading(false))
     }, [filters.description, filters.type, filters.category, filters.period, filters.page]);
 

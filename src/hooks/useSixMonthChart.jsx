@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { api } from "../context/apiContext";
 import { formatCurrency } from "../utils/formatCurrency";
+import axios from "axios";
 
 export function useSixMonthChart() {
     const [data, setData] = useState(null);
@@ -8,10 +9,22 @@ export function useSixMonthChart() {
     const [error, setError] = useState("");
 
     useEffect(() => {
-        api.get("/transactions/getChartData")
+        const controller = new AbortController();
+        const signal = controller.signal;
+
+
+        api.get("/transactions/getChartData", { signal })
             .then(({ data }) => setData(data))
-            .catch((err) => setError(err))
+            .catch((err) => {
+                if(!axios.isCancel(err)){
+                    setError(err);
+                }
+            })
             .finally(() => setLoading(false))
+
+        return () => {
+            controller.abort();
+        }
     }, []);
 
     const dataMonthChart = data ? data.map((e) => {

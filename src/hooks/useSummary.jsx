@@ -1,5 +1,6 @@
 import { api } from "../context/apiContext";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 import React from 'react'
 
@@ -9,10 +10,22 @@ export function useSummary() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        api.get('/transactions/summary')
+        const controller = new AbortController();
+        const signal = controller.signal;
+
+        api.get('/transactions/summary', { signal })
             .then(({ data }) => setSummary(data))
-            .catch((err) => setError(err))
+            .catch((err) => {
+                if(!axios.isCancel(err)){
+                    setError(err);
+                }
+            })
             .finally(() => setLoading(false))
+
+            return () => {
+                controller.abort()
+            }
+
     }, []);
 
     return { summary, loading, error }

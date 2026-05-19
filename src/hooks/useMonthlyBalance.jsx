@@ -1,3 +1,4 @@
+import axios from "axios";
 import { api } from "../context/apiContext";
 import { useState, useEffect } from "react";
 
@@ -7,12 +8,19 @@ export function useMonthlyBalance() {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        api.get("transactions/monthlySummary")
+        const controller = new AbortController();
+        const signal = controller.signal;
+
+        api.get("transactions/monthlySummary", { signal })
             .then(({ data }) => setMonthlyBalance(data))
-            .catch((err) => setError(err))
+            .catch((err) => {
+                if(!axios.isCancel(err)){
+                    setError(err);
+                }
+            })
             .finally(() => setLoading(false));
     }, []);
 
-    return {monthlyBalance, loading, error}
+    return { monthlyBalance, loading, error }
 
 }
