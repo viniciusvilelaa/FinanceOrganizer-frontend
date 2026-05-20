@@ -7,71 +7,13 @@
     font-family: 'Inter', sans-serif;
     color: #3870EA;
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 1rem 1rem;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 1px 10px 0px;
     z-index: 999999;
 }
 
-.navbar--title {
-    font-weight: 600;
-    font-family: "Manrope", sans-serif;
-    margin-right: 2rem;
-    font-size: 1.3rem;
-}
-
-.navbar-left {
-    display: flex;
-    align-items: center;
-
-}
-
-.navbar-container-links {
-    display: flex;
-    color: #C5C6C8;
-    gap: 1rem;
-
-}
-
-.navbar-container-links p {
-    font-weight: 300;
-    padding: .5rem;
-    cursor: pointer;
-    color: #3870EA;
-    border-bottom: 2px solid transparent;
-    /* reserva o espaço sempre */
-    transition: border-color 0.2s ease;
-
-}
-
-.navbar-container-links p:hover {
-
-    border-color: #3870EA;
-}
-
-.navbar-right p {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background: #5C8CFF;
-    color: #fff;
-    font-size: 1rem;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: background 0.2s ease;
-    border: 3px solid #3870EA;
-}
-
-.navbar-right p:hover {
-    background: #3a6bdf;
-}
-
 .navbar-logo {
-    height: 60px; /* Define um tamanho agradável para a logo */
+    height: 70px;
     max-width: 100%;
     object-fit: contain;
 }
