@@ -14,7 +14,7 @@ export default function NewTransactionCard() {
     const [error, setError] = useState('');
     const [sucess, setSucess] = useState('');
 
-    
+
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -33,7 +33,7 @@ export default function NewTransactionCard() {
                 setError("Dados invalidos. Verifique os campos");
             } else if (error.response?.status === 401) {
                 setError('Sessão expirada. Faça o login novamente');
-            }else{
+            } else {
                 setError('Erro ao adcionar transição. Tente novamente');
             }
         }
@@ -41,9 +41,9 @@ export default function NewTransactionCard() {
 
 
     return (
-        
+
         <div className="bg-white rounded-xl p-[25px] w-full card-container">
-            
+
             <form onSubmit={handleSubmit} className='nt-form'>
 
                 {/*TRANSACTION TYPE*/}
@@ -99,6 +99,15 @@ export default function NewTransactionCard() {
                             <option value="LAZER">Lazer</option>
                             <option value="COMIDA">Comida</option>
                             <option value="TRANSPORTE">Transporte</option>
+                            <option value="SAUDE">Saúde</option>
+                            <option value="MORADIA">Moradia</option>
+                            <option value="EDUCAÇAO">Educação</option>
+                            <option value="SALARIO">Salário</option>
+                            <option value="MORADIA">Moradia</option>
+                            <option value="INVESTIMENTO">Investimento</option>
+                            <option value="ASSINATURA">Assinatura</option>
+                            <option value="COMBUSTIVEL">Combustível</option>
+                            <option value="OUTROS">Outros</option>
                         </select>
                     </div>
                 </div>
@@ -115,7 +124,7 @@ export default function NewTransactionCard() {
                     />
                 </div>
 
-                <button  type="submit" className="nt-submit">
+                <button type="submit" className="nt-submit">
                     Add Transaction
                 </button>
                 {error && <p className='nt-error'>{error}</p>}

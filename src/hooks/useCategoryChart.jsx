@@ -11,6 +11,12 @@ const CATEGORY_COLORS = {
     "LAZER": "#8B5CF6",
     "SAUDE": "#10B981",
     "EDUCACAO": "#F59E0B",
+    "MORADIA": "#EC4899",
+    "OUTROS": "#64748B",
+    "INVESTIMENTO": "#14B8A6",
+    "SALARIO": "#22C55E",
+    "ASSINATURAS": "#06B6D4",
+    "COMBUSTIVEL": "#F43F5E",
 }
 
 export function useCategoryChart() {
@@ -30,7 +36,7 @@ export function useCategoryChart() {
         api.get("/transactions/getPizzaData", { signal })
             .then(({ data }) => { setData(data) })
             .catch((err) => {
-                if(!axios.isCancel(err)){
+                if (!axios.isCancel(err)) {
                     setError(err);
                 }
             })

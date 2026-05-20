@@ -32,7 +32,7 @@ export function Sidebar() {
                         Transactions
                     </p>
                     <button
-                        className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors font-medium"
+                        className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors font-medium hover:cursor-pointer"
                         onClick={() => navigate('/transactionRegister')}>
                         Add Transaction
                     </button>
