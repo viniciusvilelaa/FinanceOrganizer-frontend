@@ -7,7 +7,7 @@ import { formatPercentage } from "../utils/formatPercentage";
 export function useCurrentGoal() {
     const [currentGoal, setCurrentGoal] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [error, setError] = useState("");
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const controller = new AbortController();
