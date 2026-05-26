@@ -2,10 +2,10 @@ import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip } from "recharts"
 import { CustomTooltip } from "../ToolTip/CustomToolTip"
 import CategoryPieChartSkeleton from "./CategoryPieChartSkeleton"
 
-export default function CategoryPieChart({ data, loading, error }) {
+export default function CategoryPieChart({ data, isFetching, error }) {
     
 
-    if (loading) return <CategoryPieChartSkeleton />
+    if (isFetching) return <CategoryPieChartSkeleton />
     if (error) return `Error: ${error}`
     if (!data || data.length === 0) return "Empty data"
 
