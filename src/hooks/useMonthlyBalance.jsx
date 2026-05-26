@@ -1,26 +1,25 @@
 import axios from "axios";
 import { api } from "../context/apiContext";
 import { useState, useEffect } from "react";
+import { useQuery } from "@tanstack/react-query";
+
+
+const fetchMonthlyBalance = async () => {
+    const { data } = await api.get("transactions/monthlySummary");
+    console.log("Monthsumary response", data);
+    return data
+}
+
+
+
 
 export function useMonthlyBalance() {
-    const [monthlyBalance, setMonthlyBalance] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
-    useEffect(() => {
-        const controller = new AbortController();
-        const signal = controller.signal;
+    const query = useQuery({
+        queryKey: ['monthlyBalance'],
+        queryFn: fetchMonthlyBalance
+    });
 
-        api.get("transactions/monthlySummary", { signal })
-            .then(({ data }) => setMonthlyBalance(data))
-            .catch((err) => {
-                if(!axios.isCancel(err)){
-                    setError(err);
-                }
-            })
-            .finally(() => setLoading(false));
-    }, []);
-
-    return { monthlyBalance, loading, error }
+    return query
 
 }

@@ -12,13 +12,13 @@ import { useSixMonthChart } from '../../hooks/useSixMonthChart';
 export default function Home() {
     const { data: summary, isFetching: isSummaryFetching } = useSummary();
     const { transactions, isFetching: isTransactionsFetching } = useTransactions();
-    const { monthlyBalance, loading: loadingBalances } = useMonthlyBalance();
+    const { data: monthlyBalance, isFetching: isMonthlyBalanceFetching } = useMonthlyBalance();
     const { dataEnchanced, loading: loadingPieChart } = useCategoryChart()
     const { dataMonthChart, loading: loadingBarChart } = useSixMonthChart();
 
     if (!summary || !monthlyBalance) return null
 
-    if (loadingBalances || isTransactionsFetching || isSummaryFetching || loadingPieChart || loadingBarChart) return null
+    if (isMonthlyBalanceFetching || isTransactionsFetching || isSummaryFetching || loadingPieChart || loadingBarChart) return null
 
     return (
         <>
