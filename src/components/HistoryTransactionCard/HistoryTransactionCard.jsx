@@ -18,10 +18,12 @@ export default function HistoryTransactionCard() {
 
     const [debouncedDescription] = useDebounce(filters.description, 500);
 
-    const { transactions, loading, meta } = useTransactions({
+    const { transactions, isLoading, meta, isFetching } = useTransactions({
         ...filters,
         description: debouncedDescription,
     });
+
+    
 
     function handleFilterChange(key, value) {
         setFilters(prev => ({ ...prev, [key]: value, page: 1 }));
@@ -38,20 +40,20 @@ export default function HistoryTransactionCard() {
             <TransactionFilters filters={filters} onFilterChange={handleFilterChange}></TransactionFilters>
             
             <div className="pt-4">
-                {loading && (
+                {isFetching && (
                     <div className="flex justify-center items-center py-10">
                         <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mr-3"></div>
                         <p className="text-gray-500">Loading transactions...</p>
                     </div>
                 )}
 
-                {!loading && transactions.length === 0 && (
+                {!isFetching && !isLoading && transactions.length === 0 && (
                     <div className="flex justify-center items-center py-10">
                         <p className="text-gray-500">No transactions found for the selected filters.</p>
                     </div>
                 )}
 
-                {!loading && transactions.length > 0 && (
+                {!isFetching && !isLoading && transactions.length > 0 && (
                     <div className="flex flex-col gap-3">
                         {transactions.map(t => (
                             <div key={t.id} className="flex items-center justify-between p-4 border border-gray-100 rounded-xl hover:shadow-sm transition-shadow bg-gray-300/30">
@@ -75,7 +77,7 @@ export default function HistoryTransactionCard() {
                         ))}
                     </div>
                 )}
-                {console.log(meta)}
+                {console.log(transactions)}
 
                 <Pagination currentPage={filters.page} totalPages={totalPages} onPageChange={handlePageChange}></Pagination>
 

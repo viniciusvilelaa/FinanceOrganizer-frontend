@@ -34,7 +34,7 @@ export default function TransactionFilters({ filters, onFilterChange }) {
       </select>
 
       <div className="filter-period">
-        {['30 days', '3 months', '1 year'].map((p) => (
+        {['30d', '3m', '1y'].map((p) => (
           <button
             key={p}
             className={`period-btn ${filters.period === p ? 'period-active' : ''}`}
