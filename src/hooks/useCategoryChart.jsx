@@ -3,6 +3,7 @@ import { useState, useEffect, useMemo } from "react";
 import { formatCurrency } from "../utils/formatCurrency";
 import { formatPercentage } from "../utils/formatPercentage";
 import axios from "axios";
+import { useQuery } from "@tanstack/react-query";
 
 
 const CATEGORY_COLORS = {
@@ -19,34 +20,21 @@ const CATEGORY_COLORS = {
     "COMBUSTIVEL": "#F43F5E",
 }
 
+const fetchCategoryChart = async () => {
+    const { data } = await api.get("/transactions/getPizzaData");
+
+    return data
+}
+
 export function useCategoryChart() {
-    const [data, setData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
 
 
 
-    useEffect(() => {
 
-        const controller = new AbortController();
-        const signal = controller.signal;
-
-        setLoading(true);
-
-        api.get("/transactions/getPizzaData", { signal })
-            .then(({ data }) => { setData(data) })
-            .catch((err) => {
-                if (!axios.isCancel(err)) {
-                    setError(err);
-                }
-            })
-            .finally(() => { setLoading(false) });
-
-        return () => {
-            controller.abort();
-        }
-
-    }, []);
+    const { data, error, isFetching } = useQuery({
+        queryKey: ['dataCategoryChart'],
+        queryFn: fetchCategoryChart
+    })
 
 
     // Log para testar rapidamente o retorno
@@ -66,5 +54,5 @@ export function useCategoryChart() {
 
 
 
-    return { dataEnchanced, loading, error };
+    return { dataEnchanced, isFetching, error };
 }

@@ -13,12 +13,12 @@ export default function Home() {
     const { data: summary, isFetching: isSummaryFetching } = useSummary();
     const { transactions, isFetching: isTransactionsFetching } = useTransactions();
     const { data: monthlyBalance, isFetching: isMonthlyBalanceFetching } = useMonthlyBalance();
-    const { dataEnchanced, loading: loadingPieChart } = useCategoryChart()
+    const { dataEnchanced, isFetching: isPieChartFetching } = useCategoryChart()
     const { dataMonthChart, loading: loadingBarChart } = useSixMonthChart();
 
     if (!summary || !monthlyBalance) return null
 
-    if (isMonthlyBalanceFetching || isTransactionsFetching || isSummaryFetching || loadingPieChart || loadingBarChart) return null
+    if (isMonthlyBalanceFetching || isTransactionsFetching || isSummaryFetching || isPieChartFetching || loadingBarChart) return null
 
     return (
         <>
