@@ -51,15 +51,15 @@ export function AuthProvider({ children }) {
 
             localStorage.setItem("token", data.token);
             localStorage.setItem("user", JSON.stringify(data.user));
-        } catch(err) {
-            if(err.response?.status === 401){
+        } catch (err) {
+            if (err.response?.status === 401) {
                 throw new Error("Invalid credentials");
             }
-            
+
             throw new Error("Error to acess server");
 
         }
-        
+
 
 
 
@@ -77,7 +77,7 @@ export function AuthProvider({ children }) {
         delete api.defaults.headers.common["Authorization"];
         localStorage.removeItem("token");
         localStorage.removeItem("user");
-        
+
     }
 
     return (
