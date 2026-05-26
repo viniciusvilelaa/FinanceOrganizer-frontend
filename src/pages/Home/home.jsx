@@ -14,11 +14,11 @@ export default function Home() {
     const { transactions, isFetching: isTransactionsFetching } = useTransactions();
     const { data: monthlyBalance, isFetching: isMonthlyBalanceFetching } = useMonthlyBalance();
     const { dataEnchanced, isFetching: isPieChartFetching } = useCategoryChart()
-    const { dataMonthChart, loading: loadingBarChart } = useSixMonthChart();
+    const { dataMonthChart, isFetching: isSixMonthChartFetching } = useSixMonthChart();
 
     if (!summary || !monthlyBalance) return null
 
-    if (isMonthlyBalanceFetching || isTransactionsFetching || isSummaryFetching || isPieChartFetching || loadingBarChart) return null
+    if (isMonthlyBalanceFetching || isTransactionsFetching || isSummaryFetching || isPieChartFetching || isSixMonthChartFetching) return null
 
     return (
         <>

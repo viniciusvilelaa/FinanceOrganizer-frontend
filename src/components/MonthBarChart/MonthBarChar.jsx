@@ -6,9 +6,9 @@ import MonthBarChartSkeleton from "./MonthBarChartSkeleton";
 const expenseRedColor = "#dc2626";
 const incomeGreenColor = "#16a34a";
 
-export default function MonthBarChart({ data, loading, error }) {
+export default function MonthBarChart({ data, isFetching, error }) {
     
-    if (loading) return <MonthBarChartSkeleton />
+    if (isFetching) return <MonthBarChartSkeleton />
     if (error) return `Error: ${error}`
     if (!data || data.length === 0) return "Empty data"
 
