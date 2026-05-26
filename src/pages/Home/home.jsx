@@ -10,15 +10,15 @@ import MonthBarChart from '../../components/MonthBarChart/MonthBarChar';
 import { useSixMonthChart } from '../../hooks/useSixMonthChart';
 
 export default function Home() {
-    const { summary, loading } = useSummary();
-    const { transactions, loading: loadingTransaction } = useTransactions();
+    const { data: summary, isFetching: isSummaryFetching } = useSummary();
+    const { transactions, isFetching: isTransactionsFetching } = useTransactions();
     const { monthlyBalance, loading: loadingBalances } = useMonthlyBalance();
     const { dataEnchanced, loading: loadingPieChart } = useCategoryChart()
     const { dataMonthChart, loading: loadingBarChart } = useSixMonthChart();
 
     if (!summary || !monthlyBalance) return null
 
-    if (loading || loadingBalances || loadingTransaction || loadingPieChart || loadingBarChart) return null
+    if (loadingBalances || isTransactionsFetching || isSummaryFetching || loadingPieChart || loadingBarChart) return null
 
     return (
         <>
