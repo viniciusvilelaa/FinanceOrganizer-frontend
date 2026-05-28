@@ -5,18 +5,18 @@ import { Sidebar } from '../components/sidebar/sidebar';
 import { useEffect } from 'react';
 
 export function PrivateRoutes({ children }: { children: React.ReactNode }) {
-    const { isAuthenticated, loading } = useAuth();
+    const { isAuthenticated, isLoading } = useAuth();
     const navigate = useNavigate();
 
 
 
     useEffect(() => {
-        if (!loading && !isAuthenticated) {
+        if (!isLoading && !isAuthenticated) {
             navigate("/", { replace: true });
         }
-    }, [loading, isAuthenticated])
+    }, [isLoading, isAuthenticated])
 
-    if (loading) return <div>Carregando...</div>;
+    if (isLoading) return <div>Carregando...</div>;
 
     if (!isAuthenticated) return <Navigate to="/" replace />
 
