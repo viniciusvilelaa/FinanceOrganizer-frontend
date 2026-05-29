@@ -3,47 +3,37 @@ import { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import { formatCurrency } from "../utils/formatCurrency";
 import { formatPercentage } from "../utils/formatPercentage";
+import { useQuery } from "@tanstack/react-query";
+
+const fetchCurrentGoal = async () => {
+    const {data} = await api.get("/goals/current");
+
+    return data
+}
 
 export function useCurrentGoal() {
-    const [currentGoal, setCurrentGoal] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    useEffect(() => {
-        const controller = new AbortController();
-        const signal = controller.signal;
-
-        api.get("/goals/current", { signal })
-            .then(({ data }) => setCurrentGoal(data))
-            .catch((err) => {
-                if (!axios.isCancel(err)) {
-                    setError(err);
-                }
-            })
-            .finally(() => setLoading(false))
-
-        return () => {
-            controller.abort()
-        }
-
-    }, []);
+    
+    const {data, error, isFetching } = useQuery({
+        queryKey: ['currentGoalData'],
+        queryFn: fetchCurrentGoal
+    });
 
 
 
     const currentGoalEnhanced = useMemo(() => {
-        if (!currentGoal) return null;
+        if (!data) return null;
 
         return {
-            id: currentGoal.id,
-            targetAmount: formatCurrency(currentGoal.targetAmount),
-            currentAmount: formatCurrency(currentGoal.currentAmount),
-            percentage: formatPercentage(currentGoal.percentage),
-            month: currentGoal.month,
-            year: currentGoal.year,
-            status: currentGoal.status
+            id: data.id,
+            targetAmount: formatCurrency(data.targetAmount),
+            currentAmount: formatCurrency(data.currentAmount),
+            percentage: formatPercentage(data.percentage),
+            month: data.month,
+            year: data.year,
+            status: data.status
         }
-    }, [currentGoal]);
+    }, [data]);
 
-    return { currentGoalEnhanced, loading, error }
+    return { currentGoalEnhanced, isFetching, error }
 
 }
