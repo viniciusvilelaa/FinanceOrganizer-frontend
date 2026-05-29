@@ -1,11 +1,11 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import "./sidebar.css";
-import { Logout } from "../../utils/logout";
+import { useAuth } from "../../context/apiContext";
 
 export function Sidebar() {
     const navigate = useNavigate();
     const location = useLocation();
-    const user = JSON.parse(localStorage.getItem("user") || "{}");
+    const { user, logout } = useAuth();
     const initialChar = user?.name ? user.name.charAt(0).toUpperCase() : "?";
 
     return (
@@ -15,7 +15,7 @@ export function Sidebar() {
                     <div className="sidebar-logo">
                         <p>{initialChar}</p>
                     </div>
-                    <p className="text-lg font-medium text-blue-500">{user.name}</p>
+                    <p className="text-lg font-medium text-blue-500">{user?.name || ""}</p>
                 </div>
 
                 <div className="sidebar-links">
@@ -40,7 +40,7 @@ export function Sidebar() {
             </div>
 
             <div className="sidebar-bottom">
-                <p className="sidebar-logout" onClick={() => Logout(navigate)}>
+                <p className="sidebar-logout" onClick={() => logout()}>
                     Logout
                 </p>
             </div>
