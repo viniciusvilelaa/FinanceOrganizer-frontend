@@ -8,6 +8,8 @@ import CategoryPieChart from '../../components/CategoryPieChart/CategoryPieChart
 import { useCategoryChart } from '../../hooks/useCategoryChart';
 import MonthBarChart from '../../components/MonthBarChart/MonthBarChar';
 import { useSixMonthChart } from '../../hooks/useSixMonthChart';
+import CurrentGoalCard from '../../components/Goals/currentGoalCard';
+import { useCurrentGoal } from '../../hooks/useCurrentGoal';
 
 export default function Home() {
     const { data: summary, isFetching: isSummaryFetching } = useSummary();
@@ -15,16 +17,20 @@ export default function Home() {
     const { data: monthlyBalance, isFetching: isMonthlyBalanceFetching } = useMonthlyBalance();
     const { dataEnchanced, isFetching: isPieChartFetching } = useCategoryChart()
     const { dataMonthChart, isFetching: isSixMonthChartFetching } = useSixMonthChart();
+    const {currentGoalEnhanced,isFetching: isCurrentGoalFetching } = useCurrentGoal();
 
     if (!summary || !monthlyBalance) return null
+    if(!currentGoalEnhanced) return null
 
-    if (isMonthlyBalanceFetching || isTransactionsFetching || isSummaryFetching || isPieChartFetching || isSixMonthChartFetching) return null
-
+    if (isMonthlyBalanceFetching || isTransactionsFetching || isSummaryFetching || isPieChartFetching || isSixMonthChartFetching || isCurrentGoalFetching) return null
+    console.log(currentGoalEnhanced);
     return (
         <>
             {/* MEIO (Ocupa 6 colunas relativas ao container de 9 colunas) */}
             <main className="col-span-6 ml-2 p-6 bg-white">
                 <BalanceCard total={summary.totalBalance} />
+                <br></br>
+                <CurrentGoalCard name={currentGoalEnhanced.name} targetAmount={currentGoalEnhanced.targetAmount} currentAmount={currentGoalEnhanced.currentAmount} status={currentGoalEnhanced.status} percentage={currentGoalEnhanced.percentage} month={currentGoalEnhanced.month} year={currentGoalEnhanced.year} ></CurrentGoalCard>
                 <br></br>
                 <CategoryPieChart data={dataEnchanced}></CategoryPieChart>
                 <br></br>
