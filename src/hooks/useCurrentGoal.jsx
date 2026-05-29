@@ -25,6 +25,7 @@ export function useCurrentGoal() {
 
         return {
             id: data.id,
+            name: data.name,
             targetAmount: formatCurrency(data.targetAmount),
             currentAmount: formatCurrency(data.currentAmount),
             percentage: formatPercentage(data.percentage),
