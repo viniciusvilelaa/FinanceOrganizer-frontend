@@ -39,14 +39,8 @@ export default function HistoryTransactionCard() {
         <div className="bg-white rounded-xl mt-6">
             <TransactionFilters filters={filters} onFilterChange={handleFilterChange}></TransactionFilters>
             
-            <div className="pt-4">
-                {isFetching && (
-                    <div className="flex justify-center items-center py-10">
-                        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mr-3"></div>
-                        <p className="text-gray-500">Loading transactions...</p>
-                    </div>
-                )}
-
+            <div className={isFetching ? "opacity-50 pointer-events-none transition-opacity" : ""}>
+                
                 {!isFetching && !isLoading && transactions.length === 0 && (
                     <div className="flex justify-center items-center py-10">
                         <p className="text-gray-500">No transactions found for the selected filters.</p>
