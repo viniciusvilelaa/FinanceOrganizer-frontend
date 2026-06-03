@@ -40,7 +40,7 @@ export function useCategoryChart() {
     // Log para testar rapidamente o retorno
     const totalGeral = useMemo(() => data ? data.reduce((acumulador, e) => acumulador + e.total, 0) : 0, [data]);
 
-    let dataEnchanced = useMemo(() => data ? data.map((e) => {
+    let dataPieChart = useMemo(() => data ? data.map((e) => {
         const percentageValue = totalGeral > 0 ? (e.total / totalGeral) * 100 : 0;
         return {
             category: e.category,
@@ -54,5 +54,5 @@ export function useCategoryChart() {
 
 
 
-    return { dataEnchanced, isFetching, error };
+    return { dataPieChart, isFetching, error };
 }
