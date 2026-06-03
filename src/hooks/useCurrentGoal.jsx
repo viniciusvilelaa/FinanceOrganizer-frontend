@@ -1,6 +1,5 @@
 import { api } from "../context/apiContext";
-import { useState, useEffect, useMemo } from "react";
-import axios from "axios";
+import { useMemo } from "react";
 import { formatCurrency } from "../utils/formatCurrency";
 import { formatPercentage } from "../utils/formatPercentage";
 import { useQuery } from "@tanstack/react-query";
@@ -18,9 +17,9 @@ export function useCurrentGoal() {
         queryFn: fetchCurrentGoal
     });
 
+    const isEmpty = !isFetching && (data === null || data === undefined);
 
-
-    const currentGoalEnhanced = useMemo(() => {
+    const currentGoalData = useMemo(() => {
         if (!data) return null;
 
         return {
@@ -35,6 +34,6 @@ export function useCurrentGoal() {
         }
     }, [data]);
 
-    return { currentGoalEnhanced, isFetching, error }
+    return { currentGoalData, isFetching, error, isEmpty }
 
 }
