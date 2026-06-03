@@ -10,31 +10,39 @@ import MonthBarChart from '../../components/MonthBarChart/MonthBarChar';
 import { useSixMonthChart } from '../../hooks/useSixMonthChart';
 import CurrentGoalCard from '../../components/Goals/currentGoalCard';
 import { useCurrentGoal } from '../../hooks/useCurrentGoal';
+import EmptyGoalCard from '../../components/Goals/EmptyGoalCard';
 
 export default function Home() {
     const { data: summary, isFetching: isSummaryFetching } = useSummary();
     const { transactions, isFetching: isTransactionsFetching } = useTransactions();
     const { data: monthlyBalance, isFetching: isMonthlyBalanceFetching } = useMonthlyBalance();
-    const { dataEnchanced, isFetching: isPieChartFetching } = useCategoryChart()
+    const { dataPieChart, isFetching: isPieChartFetching } = useCategoryChart()
     const { dataMonthChart, isFetching: isSixMonthChartFetching } = useSixMonthChart();
-    const {currentGoalEnhanced,isFetching: isCurrentGoalFetching } = useCurrentGoal();
+    const { currentGoalData, isFetching: isCurrentGoalFetching, isEmpty: isCurrentGoalEmpty } = useCurrentGoal();
 
     if (!summary || !monthlyBalance) return null
-    if(!currentGoalEnhanced) return null
 
-    if (isMonthlyBalanceFetching || isTransactionsFetching || isSummaryFetching || isPieChartFetching || isSixMonthChartFetching || isCurrentGoalFetching) return null
-    console.log(currentGoalEnhanced);
+    if (isMonthlyBalanceFetching || isTransactionsFetching || isSummaryFetching) return null
     return (
         <>
             {/* MEIO (Ocupa 6 colunas relativas ao container de 9 colunas) */}
             <main className="col-span-6 ml-2 p-6 bg-white">
                 <BalanceCard total={summary.totalBalance} />
                 <br></br>
-                <CurrentGoalCard name={currentGoalEnhanced.name} targetAmount={currentGoalEnhanced.targetAmount} currentAmount={currentGoalEnhanced.currentAmount} status={currentGoalEnhanced.status} percentage={currentGoalEnhanced.percentage} month={currentGoalEnhanced.month} year={currentGoalEnhanced.year} ></CurrentGoalCard>
+                {isCurrentGoalFetching ? (<CurrentGoalCard isFetching={true} />) :
+                    isCurrentGoalEmpty ? (<EmptyGoalCard />) :
+                        (<CurrentGoalCard
+                            name={currentGoalData.name}
+                            targetAmount={currentGoalData.targetAmount}
+                            currentAmount={currentGoalData.currentAmount}
+                            status={currentGoalData.status}
+                            percentage={currentGoalData.percentage}
+                            month={currentGoalData.month}
+                            year={currentGoalData.year} />)}
                 <br></br>
-                <CategoryPieChart data={dataEnchanced}></CategoryPieChart>
+                <CategoryPieChart data={dataPieChart} isFetching={isPieChartFetching}></CategoryPieChart>
                 <br></br>
-                <MonthBarChart data={dataMonthChart}></MonthBarChart>
+                <MonthBarChart data={dataMonthChart} isFetching={isSixMonthChartFetching}></MonthBarChart>
             </main>
 
             {/* DIREITA (Ocupa 3 colunas relativas ao container de 9 colunas) */}
