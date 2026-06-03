@@ -1,4 +1,5 @@
 import { Calendar as CalendarIcon } from "lucide-react";
+import CurrentGoalCardSkeleton from "./CurrentGoalCardSkeleton";
 
 const statusConfig = {
     "ACHIEVED": {
@@ -25,9 +26,11 @@ const statusConfig = {
 
 
 
-export default function CurrentGoalCard({ name, targetAmount, currentAmount, status, percentage, month, year }) {
+export default function CurrentGoalCard({ name, targetAmount, currentAmount, status, percentage, month, year, isFetching }) {
 
-    console.log({ name, targetAmount, currentAmount, status, percentage, month, year });
+    if(isFetching) return <CurrentGoalCardSkeleton/>
+
+    
     return (
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 flex flex-col gap-4">
 
