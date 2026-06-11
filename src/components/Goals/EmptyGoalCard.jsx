@@ -1,16 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { Target } from "lucide-react";
 
-export default function EmptyGoalCard({ onRegisterClick }) {
-    const navigate = useNavigate();
-
-    const handleClick = () => {
-        if (onRegisterClick) {
-            onRegisterClick();
-        } else {
-            navigate("/goalRegister");
-        }
-    };
+export default function EmptyGoalCard({ onCreateGoal }) {
 
     return (
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 flex flex-col items-center justify-center text-center gap-4">
@@ -24,7 +15,7 @@ export default function EmptyGoalCard({ onRegisterClick }) {
                 </p>
             </div>
             <button
-                onClick={handleClick}
+                onClick={onCreateGoal}
                 className="mt-2 bg-blue-500 hover:bg-blue-600 text-white text-xs font-semibold px-4 py-2 rounded-xl transition-colors shadow-sm cursor-pointer"
             >
                 Definir Meta
