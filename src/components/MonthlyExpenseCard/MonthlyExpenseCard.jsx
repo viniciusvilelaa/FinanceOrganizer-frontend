@@ -1,4 +1,4 @@
-import '../monthlyExpenseCard/monthlyExpenseCard.css'
+import './monthlyExpenseCard.css'
 import { formatCurrency } from '../../utils/formatCurrency'
 
 export default function MonthlyExpenseCard({ totalBalance, type }) {

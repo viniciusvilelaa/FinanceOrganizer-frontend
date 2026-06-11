@@ -8,7 +8,7 @@ import CategoryPieChart from '../../components/CategoryPieChart/CategoryPieChart
 import { useCategoryChart } from '../../hooks/useCategoryChart';
 import MonthBarChart from '../../components/MonthBarChart/MonthBarChar';
 import { useSixMonthChart } from '../../hooks/useSixMonthChart';
-import CurrentGoalCard from '../../components/Goals/currentGoalCard';
+import CurrentGoalCard from '../../components/Goals/CurrentGoalCard';
 import { useCurrentGoal } from '../../hooks/useCurrentGoal';
 import EmptyGoalCard from '../../components/Goals/EmptyGoalCard';
 import BaseModalCard from '../../components/ModalFather/BaseModalCard';
@@ -46,7 +46,7 @@ export default function Home() {
                             percentage={currentGoalData.percentage}
                             month={currentGoalData.month}
                             year={currentGoalData.year} />)}
-                <BaseModalCard onClose={()=> setModalOpen(false)}title={"Nova Meta"}isOpen={isModalOpen}><GoalForm onSuccess={()=>setModalOpen(false)}></GoalForm></BaseModalCard>
+                <BaseModalCard size='2xl' onClose={()=> setModalOpen(false)}title={"New goal"}isOpen={isModalOpen}><GoalForm onSuccess={()=>setModalOpen(false)}></GoalForm></BaseModalCard>
                 <br></br>
                 <CategoryPieChart data={dataPieChart} isFetching={isPieChartFetching}></CategoryPieChart>
                 <br></br>

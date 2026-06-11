@@ -30,7 +30,6 @@ export default function CurrentGoalCard({ name, targetAmount, currentAmount, sta
 
     if(isFetching) return <CurrentGoalCardSkeleton/>
 
-    
     return (
         <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-5 flex flex-col gap-4">
 
@@ -58,8 +57,8 @@ export default function CurrentGoalCard({ name, targetAmount, currentAmount, sta
             <div className="flex flex-col gap-1.5">
                 <div className="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
                     <div
-                        className={`h-full rounded-full transition-all duration-500 ${statusConfig[status].barClass}`}
-                        style={{ width: `${Math.min(percentage, 100)}` }}
+                        className={`h-2 rounded-full transition-all duration-500 ${statusConfig[status].barClass}`}
+                        style={{ width: `${Math.min(parseFloat(percentage) || 0, 100)}%` }}
                     />
                 </div>
                 <span className="text-xs text-gray-400 text-right">{percentage} concluído</span>

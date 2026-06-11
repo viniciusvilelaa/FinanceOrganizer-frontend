@@ -4,7 +4,7 @@ import Register from '../pages/Register/register'
 import Home from '../pages/Home/home'
 import TransactionsHistory from '../pages/TransactionHistory/transactionHistory'
 import TransactionRegister from '../pages/TransactionRegister/transactionRegister'
-import { PrivateRoutes } from './PrivateRoutes.js';
+import { PrivateRoutes } from './PrivateRoutes';
 
 export function AppRoutes() {
   return (
