@@ -25,8 +25,8 @@ export default function BaseModalCard({ isOpen, onClose, children, title }) {
 
 
     return (
-        <dialog ref={dialogRef} onClose={onClose} className="bg-transparent border-none backdrop:bg-black/50">
-            <div className="fixed inset-0 z-40" onClick={onClose}></div>
+        <dialog ref={dialogRef} onClose={onClose} className="bg-transparent border-none backdrop:bg-black/50 mx-auto">
+            <div className="fixed inset-0 z-40 " onClick={onClose}></div>
 
             <div className="relative z-50 bg-white rounded-2xl shadow-x1 p-6 w-full max-w-md" onClick={(e)=> e.stopPropagation()}>
                 <div className="flex items-center justify-between mb-6">

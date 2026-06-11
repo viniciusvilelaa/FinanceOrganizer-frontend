@@ -11,6 +11,11 @@ import { useSixMonthChart } from '../../hooks/useSixMonthChart';
 import CurrentGoalCard from '../../components/Goals/currentGoalCard';
 import { useCurrentGoal } from '../../hooks/useCurrentGoal';
 import EmptyGoalCard from '../../components/Goals/EmptyGoalCard';
+import BaseModalCard from '../../components/ModalFather/BaseModalCard';
+import { useState } from 'react';
+import { GoalForm } from '../../components/Goals/GoalForm';
+
+
 
 export default function Home() {
     const { data: summary, isFetching: isSummaryFetching } = useSummary();
@@ -19,6 +24,7 @@ export default function Home() {
     const { dataPieChart, isFetching: isPieChartFetching } = useCategoryChart()
     const { dataMonthChart, isFetching: isSixMonthChartFetching } = useSixMonthChart();
     const { currentGoalData, isFetching: isCurrentGoalFetching, isEmpty: isCurrentGoalEmpty } = useCurrentGoal();
+    const [isModalOpen, setModalOpen] = useState(false);
 
     if (!summary || !monthlyBalance) return null
 
@@ -29,8 +35,9 @@ export default function Home() {
             <main className="col-span-6 ml-2 p-6 bg-white">
                 <BalanceCard total={summary.totalBalance} />
                 <br></br>
+                
                 {isCurrentGoalFetching ? (<CurrentGoalCard isFetching={true} />) :
-                    isCurrentGoalEmpty ? (<EmptyGoalCard />) :
+                    isCurrentGoalEmpty ? (<EmptyGoalCard onCreateGoal={() => setModalOpen(true)}/>) :
                         (<CurrentGoalCard
                             name={currentGoalData.name}
                             targetAmount={currentGoalData.targetAmount}
@@ -39,6 +46,7 @@ export default function Home() {
                             percentage={currentGoalData.percentage}
                             month={currentGoalData.month}
                             year={currentGoalData.year} />)}
+                <BaseModalCard onClose={()=> setModalOpen(false)}title={"Nova Meta"}isOpen={isModalOpen}><GoalForm onSuccess={()=>setModalOpen(false)}></GoalForm></BaseModalCard>
                 <br></br>
                 <CategoryPieChart data={dataPieChart} isFetching={isPieChartFetching}></CategoryPieChart>
                 <br></br>
