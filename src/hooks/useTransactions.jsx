@@ -1,6 +1,4 @@
-import axios from "axios";
 import { api } from "../context/apiContext";
-import { useState, useEffect } from "react";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 
 const fetchTransactions = async ({ queryKey, signal }) => {
@@ -19,7 +17,6 @@ const fetchTransactions = async ({ queryKey, signal }) => {
         signal
     });
 
-    console.log('resposta da API:', data);
 
     return {
         transactions: Array.isArray(data.transactions) ? data.transactions : [],
