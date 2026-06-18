@@ -4,6 +4,7 @@ import { formatCurrency } from "../utils/formatCurrency";
 import { formatPercentage } from "../utils/formatPercentage";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import { QUERY_KEYS } from "../queriesKeys/queryKyes";
 
 
 const CATEGORY_COLORS = {
@@ -32,7 +33,7 @@ export function useCategoryChart() {
 
 
     const { data, error, isFetching } = useQuery({
-        queryKey: ['dataCategoryChart'],
+        queryKey: QUERY_KEYS.categoryChart(),
         queryFn: fetchCategoryChart
     })
 

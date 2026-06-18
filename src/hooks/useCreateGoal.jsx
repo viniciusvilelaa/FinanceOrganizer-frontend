@@ -1,6 +1,7 @@
 import { api } from "../context/apiContext";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
+import { QUERY_KEYS } from "../queriesKeys/queryKyes";
 
 const fetchCreateGoal = async ({name, targetAmount, month, year}) => {
     const payload = {name, targetAmount, month, year};
@@ -16,7 +17,7 @@ export function useCreateGoal(){
     const {mutate, isPending} = useMutation({
         mutationFn: fetchCreateGoal,
         onSuccess: () => {
-            queryClient.invalidateQueries({queryKey: ['currentGoalData']})
+            queryClient.invalidateQueries({queryKey: QUERY_KEYS.goals.current()})
             toast.success("Meta criada com sucesso!")
         },
         onError: (error) => {toast.error(error.response.data?.message || "Error ao criar meta")},

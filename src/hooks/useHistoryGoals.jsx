@@ -1,5 +1,6 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { api } from "../context/apiContext";
+import { QUERY_KEYS } from "../queriesKeys/queryKyes";
 
 
 const fetchGoalsHistory = async ({queryKey, signal}) =>{
@@ -21,7 +22,7 @@ const fetchGoalsHistory = async ({queryKey, signal}) =>{
             total: data.total,
             page: data.page,
             limit: data.limit,
-            page: filters?.page
+            page: data?.page
         }
     }
 
@@ -30,11 +31,11 @@ const fetchGoalsHistory = async ({queryKey, signal}) =>{
 export function useHistoryGoals(filters = {}) {
 
     const {data, isLoading, error, isFetching} = useQuery({
-        queryKey: ['goalHistory', {
+        queryKey: QUERY_KEYS.goals.history({
             name: filters.name,
             month: filters.month,
             year: filters.year
-        }],
+        }),
         queryFn: fetchGoalsHistory,
         placeholderData: keepPreviousData
     });

@@ -3,6 +3,7 @@ import { api } from "../context/apiContext";
 import { formatCurrency } from "../utils/formatCurrency";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import { QUERY_KEYS } from "../queriesKeys/queryKyes";
 
 const fetchSixMonthChart = async () => {
     const {data} = await api.get("transactions/getChartData");
@@ -13,7 +14,7 @@ const fetchSixMonthChart = async () => {
 export function useSixMonthChart() {
     
     const {data, error, isFetching } = useQuery({
-        queryKey: ['sixMonthChartData'],
+        queryKey:   QUERY_KEYS.sixMonthChart(),
         queryFn: fetchSixMonthChart
     });
 

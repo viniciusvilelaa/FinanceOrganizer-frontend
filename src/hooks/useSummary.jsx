@@ -2,6 +2,7 @@ import { api } from "../context/apiContext";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
+import { QUERY_KEYS } from "../queriesKeys/queryKyes";
 
 const fetchSummary = async () => {
     const { data } = await api.get('transactions/summary')
@@ -12,7 +13,7 @@ const fetchSummary = async () => {
 export function useSummary() {
 
     const query = useQuery({
-        queryKey: ['summary'],
+        queryKey: QUERY_KEYS.summary(),
         queryFn: fetchSummary
     });
 

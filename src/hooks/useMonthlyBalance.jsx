@@ -2,6 +2,7 @@ import axios from "axios";
 import { api } from "../context/apiContext";
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
+import { QUERY_KEYS } from "../queriesKeys/queryKyes";
 
 
 const fetchMonthlyBalance = async () => {
@@ -16,7 +17,7 @@ const fetchMonthlyBalance = async () => {
 export function useMonthlyBalance() {
 
     const query = useQuery({
-        queryKey: ['monthlyBalance'],
+        queryKey: QUERY_KEYS.monthlyBalance(),
         queryFn: fetchMonthlyBalance
     });
 
