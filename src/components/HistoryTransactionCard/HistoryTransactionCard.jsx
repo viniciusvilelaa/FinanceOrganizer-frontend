@@ -36,10 +36,10 @@ export default function HistoryTransactionCard() {
     const totalPages = meta ? Math.ceil(meta.total / meta.limit) : 1
 
     return (
-        <div className="bg-white rounded-xl mt-6">
+        <div className="bg-white rounded-xl mt-5">
             <TransactionFilters filters={filters} onFilterChange={handleFilterChange}></TransactionFilters>
             
-            <div className={isFetching ? "opacity-50 pointer-events-none transition-opacity" : ""}>
+            <div className={`mt-6 w-full ${isFetching ? "opacity-50 pointer-events-none transition-opacity" : ""}`}>
                 
                 {!isFetching && !isLoading && transactions.length === 0 && (
                     <div className="flex justify-center items-center py-10">
@@ -48,7 +48,7 @@ export default function HistoryTransactionCard() {
                 )}
 
                 {!isFetching && !isLoading && transactions.length > 0 && (
-                    <div className="flex flex-col gap-3">
+                    <div className="flex flex-col gap-3 min-h-[440px]">
                         {transactions.map(t => (
                             <div key={t.id} className="flex items-center justify-between p-4 border border-gray-100 rounded-xl hover:shadow-sm transition-shadow bg-gray-300/30">
                                 <div className="flex items-center gap-4">
@@ -71,7 +71,6 @@ export default function HistoryTransactionCard() {
                         ))}
                     </div>
                 )}
-                {console.log(transactions)}
 
                 <Pagination currentPage={filters.page} totalPages={totalPages} onPageChange={handlePageChange}></Pagination>
 
