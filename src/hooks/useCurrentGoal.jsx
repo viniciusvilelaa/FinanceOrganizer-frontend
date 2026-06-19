@@ -3,7 +3,7 @@ import { useMemo } from "react";
 import { formatCurrency } from "../utils/formatCurrency";
 import { formatPercentage } from "../utils/formatPercentage";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import { QUERY_KEYS } from "../queriesKeys/queryKyes";
+import { QUERY_KEYS } from "../queryKeys/queryKeys";
 
 const fetchCurrentGoal = async () => {
     const {data} = await api.get("/goals/current");

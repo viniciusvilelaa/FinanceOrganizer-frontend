@@ -4,7 +4,7 @@ import { formatCurrency } from "../utils/formatCurrency";
 import { formatPercentage } from "../utils/formatPercentage";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
-import { QUERY_KEYS } from "../queriesKeys/queryKyes";
+import { QUERY_KEYS } from "../queryKeys/queryKeys";
 
 
 const CATEGORY_COLORS = {

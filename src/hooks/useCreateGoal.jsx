@@ -1,7 +1,7 @@
 import { api } from "../context/apiContext";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
-import { QUERY_KEYS } from "../queriesKeys/queryKyes";
+import { QUERY_KEYS } from "../queryKeys/queryKeys";
 
 const fetchCreateGoal = async ({name, targetAmount, month, year}) => {
     const payload = {name, targetAmount, month, year};
