@@ -31,6 +31,13 @@ export function Sidebar() {
                     >
                         Transactions
                     </p>
+                    <p
+                        className={location.pathname === '/goals' ? 'active' : ''}
+                        onClick={() => navigate('/goals')}
+                    >
+                        Goals
+                    </p>
+
                     <button
                         className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 transition-colors font-medium hover:cursor-pointer"
                         onClick={() => navigate('/transactionRegister')}>
