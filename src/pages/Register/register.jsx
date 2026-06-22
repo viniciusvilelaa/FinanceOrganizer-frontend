@@ -28,7 +28,13 @@ export default function Register() {
       await register(name, email, password);
       navigate("/home");
     } catch (err) {
-      setError(err.message);
+      const apiErrorData = err.response?.data;
+      if (apiErrorData?.error && typeof apiErrorData.error === 'object') {
+        const messages = Object.values(apiErrorData.error).flat();
+        setError(messages.join(", "));
+      } else {
+        setError(apiErrorData?.message || err.message || "An error occurred during registration.");
+      }
     }
   }
 

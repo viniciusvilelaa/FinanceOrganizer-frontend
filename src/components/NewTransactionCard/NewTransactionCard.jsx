@@ -68,6 +68,7 @@ export default function NewTransactionCard() {
                         <input type="number" className='nt-input nt-amount-input'
                             min='0'
                             placeholder='0,00'
+                            step="0.01"
                             value={amount}
                             onChange={(e) => { setAmount(e.target.value) }}
                             required
@@ -101,9 +102,8 @@ export default function NewTransactionCard() {
                             <option value="TRANSPORTE">Transporte</option>
                             <option value="SAUDE">Saúde</option>
                             <option value="MORADIA">Moradia</option>
-                            <option value="EDUCAÇAO">Educação</option>
+                            <option value="EDUCACAO">Educação</option>
                             <option value="SALARIO">Salário</option>
-                            <option value="MORADIA">Moradia</option>
                             <option value="INVESTIMENTO">Investimento</option>
                             <option value="ASSINATURA">Assinatura</option>
                             <option value="COMBUSTIVEL">Combustível</option>
