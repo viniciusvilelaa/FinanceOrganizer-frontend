@@ -4,6 +4,7 @@ import Register from '../pages/Register/register'
 import Home from '../pages/Home/home'
 import TransactionsHistory from '../pages/TransactionHistory/transactionHistory'
 import TransactionRegister from '../pages/TransactionRegister/transactionRegister'
+import GoalHistory from '../pages/GoalHistory/GoalHistory'
 import { PrivateRoutes } from './PrivateRoutes';
 
 export function AppRoutes() {
@@ -16,6 +17,7 @@ export function AppRoutes() {
         <Route path="/home" element={<PrivateRoutes><Home/></PrivateRoutes>} />
         <Route path="/transactions" element={<PrivateRoutes><TransactionsHistory/></PrivateRoutes>} />
         <Route path="/transactionRegister" element={<PrivateRoutes><TransactionRegister/></PrivateRoutes>}/>
+        <Route path="/goals" element={<PrivateRoutes><GoalHistory/></PrivateRoutes>}/>
       </Routes>
     </BrowserRouter>
   );
