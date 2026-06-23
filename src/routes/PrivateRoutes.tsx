@@ -22,17 +22,17 @@ export function PrivateRoutes({ children }: { children: React.ReactNode }) {
 
 
     return (
-        <div className="flex flex-col h-screen">
+        <div className="flex flex-col h-screen overflow-hidden">
 
             <Navbar />
 
 
-            <div className="grid grid-cols-12 flex-1">
-                <aside className="col-span-3 bg-white">
+            <div className="grid grid-cols-12 flex-1 overflow-hidden">
+                <aside className="col-span-3 bg-white h-full">
                     <Sidebar />
                 </aside>
 
-                <div className="col-span-9 grid grid-cols-9">
+                <div className="col-span-9 grid grid-cols-9 overflow-y-auto h-full">
                     {children}
                 </div>
             </div>
