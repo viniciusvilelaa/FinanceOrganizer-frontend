@@ -1,6 +1,6 @@
 import './transactionFilters.css'
 
-export default function TransactionFilters({ filters, onFilterChange }) {
+export default function TransactionFilters({ filters, onFilterChange, onExport, isExporting }) {
   return (
     <div className="filters-container">
 
@@ -44,7 +44,11 @@ export default function TransactionFilters({ filters, onFilterChange }) {
           </button>
         ))}
       </div>
-
+      <div className="text-right">
+        <button disabled={isExporting} onClick={onExport} className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-1 px-4 border border-blue-500 hover:border-transparent rounded cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed">
+          {isExporting ? "Exporting..." : "Export PDF"}
+        </button>
+      </div>
     </div>
   )
 }
