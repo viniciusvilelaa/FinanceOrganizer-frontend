@@ -16,6 +16,8 @@ export default function HistoryTransactionCard() {
         page: 1
     });
 
+    const [isExporting, setIsExporting] = useState(false);
+
     const [debouncedDescription] = useDebounce(filters.description, 500);
 
     const { transactions, isLoading, meta, isFetching } = useTransactions({
@@ -23,24 +25,43 @@ export default function HistoryTransactionCard() {
         description: debouncedDescription,
     });
 
-    
+
 
     function handleFilterChange(key, value) {
         setFilters(prev => ({ ...prev, [key]: value, page: 1 }));
     }
 
-    function handlePageChange(newPage){
-        setFilters(prev => ({...prev, page: newPage}));
+    function handlePageChange(newPage) {
+        setFilters(prev => ({ ...prev, page: newPage }));
+    }
+
+    function handleExport(){
+        const params = new URLSearchParams();
+
+        Object.entries(filters).forEach(([key, value])=>{
+            if(key !== 'page' && value){
+                params.append(key, value);
+            }
+        });
+
+        setIsExporting(true);
+        const queryString = params.toString();
+
+        window.open(`/api/transactions/export?${queryString}`, '_blank');
+        setTimeout(()=> setIsExporting(false), 2000);
+
     }
 
     const totalPages = meta ? Math.ceil(meta.total / meta.limit) : 1
 
     return (
         <div className="bg-white rounded-xl mt-5">
-            <TransactionFilters filters={filters} onFilterChange={handleFilterChange}></TransactionFilters>
             
+
+            <TransactionFilters isExporting={isExporting} filters={filters} onFilterChange={handleFilterChange} onExport={handleExport}></TransactionFilters>
+
             <div className={`mt-6 w-full ${isFetching ? "opacity-50 pointer-events-none transition-opacity" : ""}`}>
-                
+
                 {!isFetching && !isLoading && transactions.length === 0 && (
                     <div className="flex justify-center items-center py-10">
                         <p className="text-gray-500">No transactions found for the selected filters.</p>
