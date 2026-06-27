@@ -1,9 +1,22 @@
-import axios from 'axios'
+import axios, { isAxiosError } from 'axios'
 import { createContext, useContext, useState, useEffect } from 'react'
+import type { ReactNode } from 'react'
+interface User {
+    id: number
+    name: string
+    email: string
+}
 
+interface AuthContextType {
+    user: User | null
+    isLoading: boolean
+    isAuthenticated: boolean
+    login: (email: string, password: string) => Promise<void>
+    logout: () => Promise<void>
+    register: (name: string, email: string, password: string) => Promise<void>
+}
 
-const AuthContext = createContext(null);
-
+const AuthContext = createContext<AuthContextType | null>(null);
 
 //Criando instancia da API
 export const api = axios.create({
@@ -11,12 +24,11 @@ export const api = axios.create({
     withCredentials: true
 });
 
-export function AuthProvider({ children }) {
-    const [user, setUser] = useState(null);
+export function AuthProvider({ children }: { children: ReactNode }) {
+    const [user, setUser] = useState<User | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-
         async function loadUser() {
             try {
                 const { data } = await api.get("/users/me");
@@ -44,26 +56,21 @@ export function AuthProvider({ children }) {
         return () => api.interceptors.response.eject(interceptor);
     }, []);
 
-    async function login(email, password) {
+    async function login(email: string, password: string) {
         try {
             const { data } = await api.post("/users/login", { email, password });
             setUser(data.user);
-
         } catch (err) {
-            if (err.response?.status === 401) {
+            if (isAxiosError(err) && err.response?.status === 401) {
                 throw new Error("Invalid credentials");
             }
-
             throw new Error("Error to acess server");
-
         }
-
     }
 
-    async function register(name, email, password) {
+    async function register(name: string, email: string, password: string) {
         await api.post('/users/', { name, email, password });
         await login(email, password);
-
     }
 
     async function logout() {
@@ -72,22 +79,17 @@ export function AuthProvider({ children }) {
         } finally {
             setUser(null);
         }
-
     }
 
     return (
         <AuthContext.Provider value={{ user, isLoading, isAuthenticated: !!user, login, logout, register }}>
-
             {children}
         </AuthContext.Provider>
     );
-
 }
 
 export function useAuth() {
     const context = useContext(AuthContext);
-
     if (!context) throw new Error("useAuth deve ser usado dentro do AuthProvider");
-
     return context;
 }
