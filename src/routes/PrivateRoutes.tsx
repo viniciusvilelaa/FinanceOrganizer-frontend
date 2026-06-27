@@ -3,8 +3,9 @@ import { useAuth } from '../context/apiContext';
 import { Navbar } from '../components/navbar/navbar';
 import { Sidebar } from '../components/sidebar/sidebar';
 import { useEffect } from 'react';
+import type { ReactNode } from 'react';
 
-export function PrivateRoutes({ children }: { children: React.ReactNode }) {
+export function PrivateRoutes({ children }: { children: ReactNode }) {
     const { isAuthenticated, isLoading } = useAuth();
     const navigate = useNavigate();
 
