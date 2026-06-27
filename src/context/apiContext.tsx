@@ -7,7 +7,7 @@ const AuthContext = createContext(null);
 
 //Criando instancia da API
 export const api = axios.create({
-    baseURL: "/api",
+    baseURL: import.meta.env.VITE_API_URL ?? "/api",
     withCredentials: true
 });
 
