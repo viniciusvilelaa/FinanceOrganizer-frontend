@@ -35,11 +35,11 @@ export default function HistoryTransactionCard() {
         setFilters(prev => ({ ...prev, page: newPage }));
     }
 
-    function handleExport(){
+    function handleExport() {
         const params = new URLSearchParams();
 
-        Object.entries(filters).forEach(([key, value])=>{
-            if(key !== 'page' && value){
+        Object.entries(filters).forEach(([key, value]) => {
+            if (key !== 'page' && value) {
                 params.append(key, value);
             }
         });
@@ -47,8 +47,8 @@ export default function HistoryTransactionCard() {
         setIsExporting(true);
         const queryString = params.toString();
 
-        window.open(`/transactions/export?${queryString}`, '_blank');
-        setTimeout(()=> setIsExporting(false), 2000);
+        window.open(`${import.meta.env.VITE_API_URL}/transactions/export?${queryString}`, '_blank');
+        setTimeout(() => setIsExporting(false), 2000);
 
     }
 
@@ -56,7 +56,7 @@ export default function HistoryTransactionCard() {
 
     return (
         <div className="bg-white rounded-xl mt-5">
-            
+
 
             <TransactionFilters isExporting={isExporting} filters={filters} onFilterChange={handleFilterChange} onExport={handleExport}></TransactionFilters>
 
