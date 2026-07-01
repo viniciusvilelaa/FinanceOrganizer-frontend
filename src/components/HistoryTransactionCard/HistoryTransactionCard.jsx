@@ -47,7 +47,7 @@ export default function HistoryTransactionCard() {
         setIsExporting(true);
         const queryString = params.toString();
 
-        window.open(`/api/transactions/export?${queryString}`, '_blank');
+        window.open(`/transactions/export?${queryString}`, '_blank');
         setTimeout(()=> setIsExporting(false), 2000);
 
     }
