@@ -1,5 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
+import { NumericFormat } from 'react-number-format';
 import "../NewTransactionCard/newtransactioncard.css"
 import { api } from '../../context/apiContext';
 import { toast } from 'sonner';
@@ -65,12 +66,15 @@ export default function NewTransactionCard() {
                     <label className='nt-label'>Amount</label>
                     <div className="nt-amount-wrapper">
                         <span className='nt-currency'>R$</span>
-                        <input type="number" className='nt-input nt-amount-input'
-                            min='0'
+                        <NumericFormat type="number" className='nt-input nt-amount-input'
                             placeholder='0,00'
-                            step="0.01"
+                            thousandSeparator="."
+                            decimalSeparator=','
+                            decimalScale={2}
+                            fixedDecimalScale
+                            allowNegative={false}
                             value={amount}
-                            onChange={(e) => { setAmount(e.target.value) }}
+                            onValueChange={(values) => { setAmount(values.value) }}
                             required
                         />
                     </div>
