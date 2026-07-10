@@ -66,7 +66,7 @@ export default function NewTransactionCard() {
                     <label className='nt-label'>Amount</label>
                     <div className="nt-amount-wrapper">
                         <span className='nt-currency'>R$</span>
-                        <NumericFormat type="number" className='nt-input nt-amount-input'
+                        <NumericFormat className='nt-input nt-amount-input'
                             placeholder='0,00'
                             thousandSeparator="."
                             decimalSeparator=','
