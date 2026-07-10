@@ -24,6 +24,7 @@ export const api = axios.create({
     baseURL: import.meta.env.VITE_API_URL ?? "/api",
     withCredentials: true
 });
+console.log('API URL:', import.meta.env.VITE_API_URL);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
     const [user, setUser] = useState<User | null>(null);
@@ -62,6 +63,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             const { data } = await api.post("/users/login", { email, password });
             setUser(data.user);
         } catch (err) {
+            console.log(err);
             if (isAxiosError(err) && err.response?.status === 401) {
                 throw new Error("Invalid credentials");
             }
