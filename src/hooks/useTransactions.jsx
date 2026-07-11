@@ -1,5 +1,6 @@
 import { api } from "../context/apiContext";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
+import { QUERY_KEYS } from "../queryKeys/queryKeys";
 
 const fetchTransactions = async ({ queryKey, signal }) => {
     const [_key, filters] = queryKey;
@@ -32,14 +33,7 @@ const fetchTransactions = async ({ queryKey, signal }) => {
 
 export function useTransactions(filters = {}) {
     const { data, isLoading, error, isFetching } = useQuery({
-        queryKey: ['transactions', {
-            description: filters.description,
-            type: filters.type,
-            category: filters.category,
-            period: filters.period,
-            page: filters.page,
-            limit: filters.limit
-        }],
+        queryKey: QUERY_KEYS.transactions(filters),
         queryFn: fetchTransactions,
         placeholderData: keepPreviousData
     });

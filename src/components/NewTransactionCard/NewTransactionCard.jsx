@@ -2,10 +2,12 @@ import React from 'react';
 import { useState } from 'react';
 import { NumericFormat } from 'react-number-format';
 import "../NewTransactionCard/newtransactioncard.css"
-import { api } from '../../context/apiContext';
 import { toast } from 'sonner';
+import { useCreateTransaction } from '../../hooks/useCreateTransaction';
 
 export default function NewTransactionCard() {
+
+    const {createTransaction, isCreating} = useCreateTransaction()
 
     const [type, setType] = useState('INCOME');
     const [amount, setAmount] = useState('');
@@ -21,15 +23,14 @@ export default function NewTransactionCard() {
         e.preventDefault();
         const payload = { amount: parseFloat(amount), type, category, description, date };
         try {
-            await api.post("/transactions", payload);
+            await createTransaction(payload)
             setAmount('');
             setType('INCOME');
             setDate('');
             setCategory('');
             setDescription('');
-            toast.success("Transaction added successfully!");
+            setError('');
         } catch (error) {
-            toast.error("Error adding transaction.");
             if (error.response?.status === 400) {
                 setError("Dados invalidos. Verifique os campos");
             } else if (error.response?.status === 401) {
@@ -128,8 +129,8 @@ export default function NewTransactionCard() {
                     />
                 </div>
 
-                <button type="submit" className="nt-submit">
-                    Add Transaction
+                <button type="submit" disabled={isCreating} className="nt-submit">
+                    {isCreating ? 'Creating...' : 'Add Transaction'}
                 </button>
                 {error && <p className='nt-error'>{error}</p>}
                 {sucess && <p className='nt-sucess'>{sucess}</p>}
