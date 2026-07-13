@@ -3,7 +3,7 @@ import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { QUERY_KEYS } from "../queryKeys/queryKeys";
 
 const fetchTransactions = async ({ queryKey, signal }) => {
-    const [_key, filters] = queryKey;
+   const [_key, _subKey, filters] = queryKey;
 
     const { data } = await api.get("/transactions", {
         params: {
