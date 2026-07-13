@@ -9,6 +9,7 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState();
+  const [isLoading, setIsloading] = useState(false)
 
   const navigate = useNavigate();
   const { login, logout} = useAuth();
@@ -26,12 +27,14 @@ export default function Login() {
 
   async function handleLogin(e) {
     e.preventDefault();
-
+    setIsloading(true);
     try {
       await login(email, password);
-      navigate("/home");
+      navigate("/home"); 
     } catch (err) {
       setError(err.message);
+    } finally{
+      setIsloading(false);
     }
   }
 
@@ -61,7 +64,9 @@ export default function Login() {
         </div>
 
 
-        <button className="submit" type="submit">Entrar</button>
+        <button className="submit" type="submit" disabled={isLoading}>
+          {isLoading ? "Carregando..." : "Entrar"}
+        </button>
       </form>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <div className="signup">
