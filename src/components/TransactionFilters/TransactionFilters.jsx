@@ -18,9 +18,17 @@ export default function TransactionFilters({ filters, onFilterChange, onExport, 
         onChange={(e) => onFilterChange('category', e.target.value)}
       >
         <option value="">All Categories</option>
-        <option value="LAZER">Lazer</option>
         <option value="COMIDA">Comida</option>
         <option value="TRANSPORTE">Transporte</option>
+        <option value="LAZER">Lazer</option>
+        <option value="SAUDE">Saúde</option>
+        <option value="EDUCACAO">Educação</option>
+        <option value="MORADIA">Moradia</option>
+        <option value="OUTROS">Outros</option>
+        <option value="INVESTIMENTO">Investimento</option>
+        <option value="SALARIO">Salário</option>
+        <option value="ASSINATURA">Assinatura</option>
+        <option value="COMBUSTIVEL">Combustível</option>
       </select>
 
       <select
