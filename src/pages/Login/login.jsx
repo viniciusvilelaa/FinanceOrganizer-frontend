@@ -1,39 +1,44 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import '../Login/login.css';
-import { useAuth } from '../../context/apiContext';
+import "../Login/login.css";
+import { useAuth } from "../../context/apiContext";
 import { Logout } from "../../utils/logout";
 
 export default function Login() {
-
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState();
-  const [isLoading, setIsloading] = useState(false)
+  const [isLoading, setIsloading] = useState(false);
 
   const navigate = useNavigate();
-  const { login, logout} = useAuth();
+  const {
+    login,
+    logout,
+    isAuthenticated,
+    isLoading: isAuthLoading,
+  } = useAuth();
 
-  
-
-  useEffect(()=>{
-    document.body.classList.add('login-bg');
-    logout();
+  useEffect(() => {
+    document.body.classList.add("login-bg");
+    if (isAuthLoading) return;
+    if (isAuthenticated === true) {
+      navigate("home");
+    }
 
     return () => {
-      document.body.classList.remove('login-bg');
-    }
-  }, []);
+      document.body.classList.remove("login-bg");
+    };
+  }, [isAuthenticated, isAuthLoading, navigate]);
 
   async function handleLogin(e) {
     e.preventDefault();
     setIsloading(true);
     try {
       await login(email, password);
-      navigate("/home"); 
+      navigate("/home");
     } catch (err) {
       setError(err.message);
-    } finally{
+    } finally {
       setIsloading(false);
     }
   }
@@ -63,17 +68,17 @@ export default function Login() {
           />
         </div>
 
-
         <button className="submit" type="submit" disabled={isLoading}>
           {isLoading ? "Carregando..." : "Entrar"}
         </button>
       </form>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <div className="signup">
-        Não tem uma conta? <a href="#" onClick={() => navigate("/register")}>Clique aqui</a>
+        Não tem uma conta?{" "}
+        <a href="#" onClick={() => navigate("/register")}>
+          Clique aqui
+        </a>
       </div>
-
-      
     </div>
   );
 }
