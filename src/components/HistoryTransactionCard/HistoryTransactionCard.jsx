@@ -6,6 +6,7 @@ import TransactionFilters from "../TransactionFilters/TransactionFilters";
 import { formatDate } from "../../utils/formatDate";
 import Pagination from "../Pagination/Pagination";
 import { formatCurrency } from "../../utils/formatCurrency";
+import { CATEGORY_LABELS } from "../../utils/categoryLabels";
 
 export default function HistoryTransactionCard() {
     const [filters, setFilters] = useState({
@@ -81,7 +82,9 @@ export default function HistoryTransactionCard() {
                                         <div className="flex gap-2 text-sm text-gray-500 mt-1">
                                             <span>{formatDate(t.date)}</span>
                                             <span>•</span>
-                                            <span className="capitalize">{t.category?.toLowerCase() || 'N/A'}</span>
+                                            <span className="capitalize">
+                                                {(CATEGORY_LABELS[t.category?.toUpperCase()] || t.category || 'N/A').toLowerCase()}
+                                            </span>
                                         </div>
                                     </div>
                                 </div>

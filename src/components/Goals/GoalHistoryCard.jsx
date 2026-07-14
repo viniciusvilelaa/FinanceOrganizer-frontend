@@ -3,22 +3,22 @@ import { formatCurrency } from "../../utils/formatCurrency";
 
 const statusConfig = {
     IN_PROGRESS: {
-        label: "Em andamento",
+        label: "In Progress",
         badgeClass: "bg-blue-100 text-blue-700",
     },
     ACHIEVED: {
-        label: "Concluída",
+        label: "Achieved",
         badgeClass: "bg-green-100 text-green-700",
     },
     FAILED: {
-        label: "Não alcançada",
+        label: "Failed",
         badgeClass: "bg-red-100 text-red-700",
     },
 };
 
 const MONTH_NAMES = [
-    "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
-    "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
 ];
 
 export default function GoalHistoryCard({ name, targetAmount, currentAmount, month, year, status }) {
@@ -41,11 +41,11 @@ export default function GoalHistoryCard({ name, targetAmount, currentAmount, mon
             {/* Valores */}
             <div className="flex items-end justify-between">
                 <div className="flex flex-col gap-0.5">
-                    <span className="text-xs text-gray-400">Alcançado</span>
+                    <span className="text-xs text-gray-400">Achieved</span>
                     <span className="text-lg font-bold text-gray-800">{formatCurrency(currentAmount)}</span>
                 </div>
                 <div className="flex flex-col gap-0.5 items-end">
-                    <span className="text-xs text-gray-400">Meta</span>
+                    <span className="text-xs text-gray-400">Goal</span>
                     <span className="text-sm font-medium text-gray-500">{formatCurrency(targetAmount)}</span>
                 </div>
             </div>

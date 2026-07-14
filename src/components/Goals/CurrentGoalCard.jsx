@@ -44,11 +44,11 @@ export default function CurrentGoalCard({ name, targetAmount, currentAmount, sta
             {/* Valores */}
             <div className="flex items-end justify-between">
                 <div className="flex flex-col gap-0.5">
-                    <span className="text-xs text-gray-400">Atual</span>
+                    <span className="text-xs text-gray-400">Current</span>
                     <span className="text-lg font-bold text-gray-800">{currentAmount}</span>
                 </div>
                 <div className="flex flex-col gap-0.5 items-end">
-                    <span className="text-xs text-gray-400">Meta</span>
+                    <span className="text-xs text-gray-400">Goal</span>
                     <span className="text-sm font-medium text-gray-500">{targetAmount}</span>
                 </div>
             </div>
@@ -61,7 +61,7 @@ export default function CurrentGoalCard({ name, targetAmount, currentAmount, sta
                         style={{ width: `${Math.min(parseFloat(percentage) || 0, 100)}%` }}
                     />
                 </div>
-                <span className="text-xs text-gray-400 text-right">{percentage} concluído</span>
+                <span className="text-xs text-gray-400 text-right">{percentage} completed</span>
             </div>
 
             {/* Footer — Prazo */}

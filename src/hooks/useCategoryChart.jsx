@@ -5,6 +5,7 @@ import { formatPercentage } from "../utils/formatPercentage";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEYS } from "../queryKeys/queryKeys";
+import { CATEGORY_LABELS } from "../utils/categoryLabels";
 
 
 const CATEGORY_COLORS = {
@@ -43,13 +44,14 @@ export function useCategoryChart() {
 
     let dataPieChart = useMemo(() => data ? data.map((e) => {
         const percentageValue = totalGeral > 0 ? (e.total / totalGeral) * 100 : 0;
+        const normalizedCategory = e.category.toUpperCase();
         return {
-            category: e.category,
+            category: CATEGORY_LABELS[normalizedCategory] || e.category,
             total: e.total,
             percentage: percentageValue,
             formattedTotal: formatCurrency(e.total),
             formattedPercentage: formatPercentage(percentageValue),
-            color: CATEGORY_COLORS[e.category.toUpperCase()] || "#9CA3AF"
+            color: CATEGORY_COLORS[normalizedCategory] || "#9CA3AF"
         }
     }) : null, [data, totalGeral]);
 

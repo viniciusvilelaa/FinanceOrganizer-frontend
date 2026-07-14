@@ -69,14 +69,14 @@ export default function Login() {
         </div>
 
         <button className="submit" type="submit" disabled={isLoading}>
-          {isLoading ? "Carregando..." : "Entrar"}
+          {isLoading ? "Loading..." : "Sign In"}
         </button>
       </form>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <div className="signup">
-        Não tem uma conta?{" "}
+        Don't have an account?{" "}
         <a href="#" onClick={() => navigate("/register")}>
-          Clique aqui
+          Click here
         </a>
       </div>
     </div>

@@ -71,11 +71,11 @@ export default function Register() {
         </div>
 
 
-        <button className="submit" type="submit">Registrar</button>
+        <button className="submit" type="submit">Register</button>
       </form>
       {error && <p style={{ color: "red" }}>{error}</p>}
       <div className="signup">
-        Já tem uma conta? <a onClick={() => navigate("/")}>Clique aqui</a>
+        Already have an account? <a onClick={() => navigate("/")}>Click here</a>
       </div>
 
       

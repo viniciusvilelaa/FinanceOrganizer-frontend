@@ -18,9 +18,9 @@ export function useCreateGoal(){
         mutationFn: fetchCreateGoal,
         onSuccess: () => {
             queryClient.invalidateQueries({queryKey: QUERY_KEYS.goals.current()})
-            toast.success("Meta criada com sucesso!")
+            toast.success("Goal created successfully!")
         },
-        onError: (error) => {toast.error(error.response.data?.message || "Error ao criar meta")},
+        onError: (error) => {toast.error(error.response.data?.message || "Error when creating goal")},
     })
 
     return {mutate, isPending}

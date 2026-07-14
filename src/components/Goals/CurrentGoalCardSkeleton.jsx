@@ -15,12 +15,12 @@ export default function CurrentGoalCardSkeleton() {
             {/* Valores */}
             <div className="flex items-end justify-between">
                 <div className="flex flex-col gap-1.5">
-                    <span className="text-xs text-gray-400">Atual</span>
+                    <span className="text-xs text-gray-400">Current</span>
                     {/* Skeleton para o valor atual */}
                     <div className="h-6 bg-gray-200 rounded w-24"></div>
                 </div>
                 <div className="flex flex-col gap-1.5 items-end">
-                    <span className="text-xs text-gray-400">Meta</span>
+                    <span className="text-xs text-gray-400">Goal</span>
                     {/* Skeleton para o valor da meta */}
                     <div className="h-5 bg-gray-200 rounded w-20"></div>
                 </div>

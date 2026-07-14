@@ -32,11 +32,11 @@ export default function NewTransactionCard() {
             setError('');
         } catch (error) {
             if (error.response?.status === 400) {
-                setError("Dados invalidos. Verifique os campos");
+                setError("Invalid data. Please check the fields");
             } else if (error.response?.status === 401) {
-                setError('Sessão expirada. Faça o login novamente');
+                setError('Session expired. Please log in again');
             } else {
-                setError('Erro ao adcionar transição. Tente novamente');
+                setError('Error adding transaction. Please try again');
             }
         }
     }
@@ -102,17 +102,17 @@ export default function NewTransactionCard() {
                             required
                         >
                             <option value="" disabled>Select...</option>
-                            <option value="LAZER">Lazer</option>
-                            <option value="COMIDA">Comida</option>
-                            <option value="TRANSPORTE">Transporte</option>
-                            <option value="SAUDE">Saúde</option>
-                            <option value="MORADIA">Moradia</option>
-                            <option value="EDUCACAO">Educação</option>
-                            <option value="SALARIO">Salário</option>
-                            <option value="INVESTIMENTO">Investimento</option>
-                            <option value="ASSINATURA">Assinatura</option>
-                            <option value="COMBUSTIVEL">Combustível</option>
-                            <option value="OUTROS">Outros</option>
+                            <option value="LAZER">Leisure</option>
+                            <option value="COMIDA">Food</option>
+                            <option value="TRANSPORTE">Transport</option>
+                            <option value="SAUDE">Health</option>
+                            <option value="MORADIA">Housing</option>
+                            <option value="EDUCACAO">Education</option>
+                            <option value="SALARIO">Salary</option>
+                            <option value="INVESTIMENTO">Investment</option>
+                            <option value="ASSINATURA">Subscription</option>
+                            <option value="COMBUSTIVEL">Fuel</option>
+                            <option value="OUTROS">Others</option>
                         </select>
                     </div>
                 </div>
