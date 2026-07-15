@@ -63,7 +63,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
             const { data } = await api.post("/users/login", { email, password });
             setUser(data.user);
         } catch (err) {
-            console.log(err);
+            
             if (isAxiosError(err) && err.response?.status === 401) {
                 throw new Error("Invalid credentials");
             }

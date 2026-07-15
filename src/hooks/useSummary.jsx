@@ -6,7 +6,7 @@ import { QUERY_KEYS } from "../queryKeys/queryKeys";
 
 const fetchSummary = async () => {
     const { data } = await api.get('transactions/summary')
-    console.log(data)
+    
     return data
 }
 

@@ -7,7 +7,7 @@ import { QUERY_KEYS } from "../queryKeys/queryKeys";
 
 const fetchMonthlyBalance = async () => {
     const { data } = await api.get("transactions/monthlySummary");
-    console.log("Monthsumary response", data);
+    
     return data
 }
 
