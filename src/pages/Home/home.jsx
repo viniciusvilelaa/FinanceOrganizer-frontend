@@ -26,14 +26,13 @@ export default function Home() {
     const { currentGoalData, isFetching: isCurrentGoalFetching, isEmpty: isCurrentGoalEmpty } = useCurrentGoal();
     const [isModalOpen, setModalOpen] = useState(false);
 
-    if (!summary || !monthlyBalance) return null
+  
 
-    if (isMonthlyBalanceFetching || isTransactionsFetching || isSummaryFetching) return null
     return (
         <>
             {/* MEIO (Ocupa 6 colunas relativas ao container de 9 colunas) */}
             <main className="col-span-6 ml-2 p-6 bg-white">
-                <BalanceCard total={summary.totalBalance} />
+                <BalanceCard total={summary?.totalBalance} isFetching={isSummaryFetching} />
                 <br></br>
                 
                 {isCurrentGoalFetching ? (<CurrentGoalCard isFetching={true} />) :
@@ -55,9 +54,9 @@ export default function Home() {
 
             {/* DIREITA (Ocupa 3 colunas relativas ao container de 9 colunas) */}
             <section className="col-span-3 bg-white p-6 flex flex-col gap-4">
-                <MonthlyExpenseCard totalBalance={monthlyBalance.totalMonthIncome} type={"INCOME"} />
-                <MonthlyExpenseCard totalBalance={monthlyBalance.totalMonthExpense} type={"EXPENSE"} />
-                <RecentTransactions transactions={transactions} />
+                <MonthlyExpenseCard totalBalance={monthlyBalance?.totalMonthIncome} type={"INCOME"} isFetching={isMonthlyBalanceFetching} />
+                <MonthlyExpenseCard totalBalance={monthlyBalance?.totalMonthExpense} type={"EXPENSE"} isFetching={isMonthlyBalanceFetching} />
+                <RecentTransactions transactions={transactions} isFetching={isTransactionsFetching} />
             </section>
         </>
     );
