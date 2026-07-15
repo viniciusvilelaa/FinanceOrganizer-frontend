@@ -4,7 +4,7 @@ import { QUERY_KEYS } from "../queryKeys/queryKeys";
 
 
 const fetchGoalsHistory = async ({queryKey, signal}) =>{
-    const [_keyBase, _key, filters] = queryKey;
+    const [_key, _subKey, _subKey2, filters] = queryKey;
 
     console.log(filters)
     const {data} = await api.get("/goals/history", {
