@@ -2,10 +2,13 @@ import { useNavigate } from 'react-router-dom'
 import './recentTransactions.css'
 import { formatDate } from '../../utils/formatDate';
 import { formatCurrency } from '../../utils/formatCurrency';
+import RecentTransactionsSkeleton from './RecentTransactionsSkeleton';
 
-export default function RecentTransactions({ transactions = [] }) {
+export default function RecentTransactions({ transactions = [], isFetching }) {
+  if (isFetching) return <RecentTransactionsSkeleton />;
+
   const navigate = useNavigate()
-  const recent = transactions.slice(0, 5);
+  const recent = transactions ? transactions.slice(0, 5) : [];
 
   return (
     <div className="bg-white rounded-xl p-[25px] w-full card-container">

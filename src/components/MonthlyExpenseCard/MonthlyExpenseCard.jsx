@@ -1,7 +1,10 @@
 import './monthlyExpenseCard.css'
 import { formatCurrency } from '../../utils/formatCurrency'
+import MonthlyExpenseCardSkeleton from './MonthlyExpenseCardSkeleton'
 
-export default function MonthlyExpenseCard({ totalBalance, type }) {
+export default function MonthlyExpenseCard({ totalBalance, type, isFetching }) {
+  if (isFetching) return <MonthlyExpenseCardSkeleton />
+
   const isIncome = type === 'INCOME'
 
   return (

@@ -1,7 +1,10 @@
 import '../balanceCard/balanceCard.css'
 import { formatCurrency } from '../../utils/formatCurrency';
+import BalanceCardSkeleton from './BalanceCardSkeleton';
 
-export default function BalanceCard({ total }) {
+export default function BalanceCard({ total, isFetching }) {
+  if (isFetching) return <BalanceCardSkeleton />;
+
   return (
     <div className="bg-white rounded-xl p-[25px] text-left  w-full card-container">
       <h1 className="text-sm font-normal text-gray-400 mb-2 uppercase tracking-wider">Total Balance</h1>
