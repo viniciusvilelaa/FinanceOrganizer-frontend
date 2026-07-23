@@ -1,6 +1,10 @@
+import { useCategories } from '../../hooks/categories/useCategories'
 import './transactionFilters.css'
 
 export default function TransactionFilters({ filters, onFilterChange, onExport, isExporting }) {
+
+  const {data: categories, isLoading: isLoadingCategories} = useCategories();
+
   return (
     <div className="filters-container">
 
@@ -14,21 +18,16 @@ export default function TransactionFilters({ filters, onFilterChange, onExport, 
 
       <select
         className="filter-input"
-        value={filters.category}
-        onChange={(e) => onFilterChange('category', e.target.value)}
+        value={filters.categoryId}
+        onChange={(e) => onFilterChange('categoryId', e.target.value)}
+        disabled={isLoadingCategories}
       >
         <option value="">All Categories</option>
-        <option value="COMIDA">Food</option>
-        <option value="TRANSPORTE">Transport</option>
-        <option value="LAZER">Leisure</option>
-        <option value="SAUDE">Health</option>
-        <option value="EDUCACAO">Education</option>
-        <option value="MORADIA">Housing</option>
-        <option value="OUTROS">Others</option>
-        <option value="INVESTIMENTO">Investment</option>
-        <option value="SALARIO">Salary</option>
-        <option value="ASSINATURA">Subscription</option>
-        <option value="COMBUSTIVEL">Fuel</option>
+        {categories?.map((cat) => (
+         <option key={cat.id} value={cat.id}>
+          {cat.name}
+         </option>
+        ))}
       </select>
 
       <select
