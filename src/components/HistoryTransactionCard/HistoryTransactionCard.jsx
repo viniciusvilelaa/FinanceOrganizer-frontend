@@ -7,6 +7,7 @@ import { formatDate } from "../../utils/formatDate";
 import Pagination from "../Pagination/Pagination";
 import { formatCurrency } from "../../utils/formatCurrency";
 import { CATEGORY_LABELS } from "../../utils/categoryLabels";
+import HistoryTransactionSkeleton from "./HistoryTransactionSkeleton";
 
 export default function HistoryTransactionCard() {
     const [filters, setFilters] = useState({
@@ -61,15 +62,15 @@ export default function HistoryTransactionCard() {
 
             <TransactionFilters isExporting={isExporting} filters={filters} onFilterChange={handleFilterChange} onExport={handleExport}></TransactionFilters>
 
-            <div className={`mt-6 w-full ${isFetching ? "opacity-50 pointer-events-none transition-opacity" : ""}`}>
+            <div className="mt-6 w-full">
 
-                {!isFetching && !isLoading && transactions.length === 0 && (
+                {(isLoading || isFetching) ? (
+                    <HistoryTransactionSkeleton />
+                ) : transactions.length === 0 ? (
                     <div className="flex justify-center items-center py-10">
                         <p className="text-gray-500">No transactions found for the selected filters.</p>
                     </div>
-                )}
-
-                {!isFetching && !isLoading && transactions.length > 0 && (
+                ) : (
                     <div className="flex flex-col gap-3 min-h-[440px]">
                         {transactions.map(t => (
                             <div key={t.id} className="flex items-center justify-between p-4 border border-gray-100 rounded-xl hover:shadow-sm transition-shadow bg-gray-300/30">
