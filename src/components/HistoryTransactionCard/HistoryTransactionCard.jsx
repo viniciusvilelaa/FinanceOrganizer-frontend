@@ -12,7 +12,7 @@ export default function HistoryTransactionCard() {
     const [filters, setFilters] = useState({
         description: '',
         type: '',
-        category: '',
+        categoryId: '',
         period: '',
         page: 1
     });
@@ -83,7 +83,7 @@ export default function HistoryTransactionCard() {
                                             <span>{formatDate(t.date)}</span>
                                             <span>•</span>
                                             <span className="capitalize">
-                                                {(CATEGORY_LABELS[t.category?.toUpperCase()] || t.category || 'N/A').toLowerCase()}
+                                                {t.category?.name || 'N/A'}
                                             </span>
                                         </div>
                                     </div>
