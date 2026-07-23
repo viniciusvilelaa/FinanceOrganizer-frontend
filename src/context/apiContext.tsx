@@ -1,6 +1,7 @@
-import axios, { isAxiosError } from 'axios'
+import { isAxiosError } from 'axios'
 import { createContext, useContext, useState, useEffect } from 'react'
 import type { ReactNode } from 'react'
+import { api } from '../services/axiosApi'
 
 interface User {
     id: number
@@ -18,12 +19,6 @@ interface AuthContextType {
 }
 
 const AuthContext = createContext<AuthContextType | null>(null);
-
-//Criando instancia da API
-export const api = axios.create({
-    baseURL: import.meta.env.VITE_API_URL ?? "/api",
-    withCredentials: true
-});
 
 
 export function AuthProvider({ children }: { children: ReactNode }) {
