@@ -9,7 +9,7 @@ const fetchTransactions = async ({ queryKey, signal }) => {
         params: {
             description: filters.description || undefined,
             type: filters.type || undefined,
-            category: filters.category || undefined,
+            categoryId: filters.categoryId || undefined,
             period: filters.period || undefined,
             page: filters.page || undefined,
             limit: filters.limit || undefined
