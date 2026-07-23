@@ -14,5 +14,8 @@ export const QUERY_KEYS = {
     summary: () => [...ROOT, 'summary'],
     monthlyBalance: () => [...ROOT, 'monthlyBalance'],
     sixMonthChart: () => [...ROOT, 'sixMonthChartData'],
-    categoryChart: () => [...ROOT, 'categoryChartData']
+    categoryChart: () => [...ROOT, 'categoryChartData'],
+
+    //Passar filters no futuro? para permitir filtros de categoria
+    categories: () => [...ROOT, 'categories'] 
 };
