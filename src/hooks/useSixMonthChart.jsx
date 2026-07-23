@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { api } from "../context/apiContext";
+import { api } from "../services/axiosApi";
 import { formatCurrency } from "../utils/formatCurrency";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";

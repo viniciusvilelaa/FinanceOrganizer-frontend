@@ -1,4 +1,4 @@
-import { api } from "../context/apiContext";
+import { api } from "../services/axiosApi";
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
 import { QUERY_KEYS } from "../queryKeys/queryKeys";
 

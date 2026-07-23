@@ -1,5 +1,5 @@
 import axios from "axios";
-import { api } from "../context/apiContext";
+import { api } from "../services/axiosApi";
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEYS } from "../queryKeys/queryKeys";

@@ -1,5 +1,5 @@
 import { keepPreviousData, useQuery } from "@tanstack/react-query";
-import { api } from "../context/apiContext";
+import { api } from "../services/axiosApi";
 import { QUERY_KEYS } from "../queryKeys/queryKeys";
 
 

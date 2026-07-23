@@ -1,4 +1,4 @@
-import { api } from "../context/apiContext";
+import { api } from "../services/axiosApi";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";

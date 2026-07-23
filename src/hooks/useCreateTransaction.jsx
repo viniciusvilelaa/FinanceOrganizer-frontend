@@ -1,4 +1,4 @@
-import { api } from "../context/apiContext";
+import { api } from "../services/axiosApi";
 import { QueryClient, useMutation, useQueryClient } from "@tanstack/react-query";
 import { QUERY_KEYS } from "../queryKeys/queryKeys";
 import { toast } from "sonner";
