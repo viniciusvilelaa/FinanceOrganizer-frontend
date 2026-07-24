@@ -3,8 +3,10 @@ import { useState } from "react";
 import { NumericFormat } from "react-number-format";
 import "../NewTransactionCard/newtransactioncard.css";
 import { toast } from "sonner";
+import { Plus } from "lucide-react";
 import { useCreateTransaction } from "../../hooks/useCreateTransaction";
 import { useCategories } from "../../hooks/categories/useCategories";
+import CategoryManagerModal from "../CategoryManagerModal/CategoryManagerModal";
 
 export default function NewTransactionCard() {
   const { createTransaction, isCreating } = useCreateTransaction();
@@ -13,6 +15,7 @@ export default function NewTransactionCard() {
   const [type, setType] = useState("INCOME");
   const [amount, setAmount] = useState("");
   const [date, setDate] = useState("");
+  const [modalIsOpen, setModalIsOpen] = useState(false);
   const [categoryId, setCategoryId] = useState("");
   const [description, setDescription] = useState("");
   const [error, setError] = useState("");
@@ -109,20 +112,30 @@ export default function NewTransactionCard() {
           </div>
           <div className="nt-section nt-half">
             <label className="nt-label">Category</label>
-            <select
-              className="nt-input nt-select"
-              value={categoryId}
-              onChange={(e) => setCategoryId(e.target.value)}
-              required
-              disabled={isLoadingCategories}
-            >
-              <option value="" disabled>
-                {isLoadingCategories ? "Loading..." : "Select..."}
-              </option>
-              {categories?.map((cat) => (
-                <option key={cat.id} value={cat.id}>{cat.name}</option>
-              ))}
-            </select>
+            <div className="nt-category-select-wrapper">
+              <select
+                className="nt-input nt-select"
+                value={categoryId}
+                onChange={(e) => setCategoryId(e.target.value)}
+                required
+                disabled={isLoadingCategories}
+              >
+                <option value="" disabled>
+                  {isLoadingCategories ? "Loading..." : "Select..."}
+                </option>
+                {categories?.map((cat) => (
+                  <option key={cat.id} value={cat.id}>{cat.name}</option>
+                ))}
+              </select>
+              <button
+                type="button"
+                className="nt-category-btn"
+                onClick={() => setModalIsOpen(true)}
+                title="Gerenciar Categorias"
+              >
+                <Plus className="w-4 h-4" />
+              </button>
+            </div>
           </div>
         </div>
 
@@ -144,6 +157,11 @@ export default function NewTransactionCard() {
         {error && <p className="nt-error">{error}</p>}
         {sucess && <p className="nt-sucess">{sucess}</p>}
       </form>
+
+      <CategoryManagerModal
+        isOpen={modalIsOpen}
+        onClose={() => setModalIsOpen(false)}
+      />
     </div>
   );
 }
