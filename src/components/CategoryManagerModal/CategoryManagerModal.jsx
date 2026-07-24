@@ -223,6 +223,7 @@ export default function CategoryManagerModal({ isOpen, onClose }) {
               {categories.map((cat) => {
                 const isItemDeleting = isDeleting && deletingId === cat.id;
                 const isBeingEdited = editingCategory?.id === cat.id;
+                const isSystemCategory = cat.userId == null;
 
                 return (
                   <div
@@ -237,57 +238,59 @@ export default function CategoryManagerModal({ isOpen, onClose }) {
                       <span className="cat-item-name">{cat.name}</span>
                     </div>
 
-                    <div className="cat-item-actions">
-                      {deletingId === cat.id ? (
-                        <div className="cat-confirm-delete-box">
-                          <span className="cat-confirm-text">Excluir?</span>
-                          <button
-                            type="button"
-                            onClick={() => ConfirmDelete(cat.id)}
-                            disabled={isDeleting}
-                            className="cat-confirm-yes-btn"
-                            title="Confirmar exclusão"
-                          >
-                            {isItemDeleting ? (
-                              <Loader2 className="w-3.5 h-3.5 animate-spin" />
-                            ) : (
-                              "Sim"
-                            )}
-                          </button>
-                          <button
-                            type="button"
-                            onClick={() => setDeletingId(null)}
-                            disabled={isDeleting}
-                            className="cat-confirm-no-btn"
-                            title="Cancelar"
-                          >
-                            <X className="w-3.5 h-3.5" />
-                          </button>
-                        </div>
-                      ) : (
-                        <>
-                          <button
-                            type="button"
-                            onClick={() => handleStartEdit(cat)}
-                            className="cat-action-btn edit"
-                            title="Editar categoria"
-                            disabled={isSubmitting}
-                          >
-                            <Pencil className="w-4 h-4" />
-                          </button>
+                    {!isSystemCategory && (
+                      <div className="cat-item-actions">
+                        {deletingId === cat.id ? (
+                          <div className="cat-confirm-delete-box">
+                            <span className="cat-confirm-text">Excluir?</span>
+                            <button
+                              type="button"
+                              onClick={() => ConfirmDelete(cat.id)}
+                              disabled={isDeleting}
+                              className="cat-confirm-yes-btn"
+                              title="Confirmar exclusão"
+                            >
+                              {isItemDeleting ? (
+                                <Loader2 className="w-3.5 h-3.5 animate-spin" />
+                              ) : (
+                                "Sim"
+                              )}
+                            </button>
+                            <button
+                              type="button"
+                              onClick={() => setDeletingId(null)}
+                              disabled={isDeleting}
+                              className="cat-confirm-no-btn"
+                              title="Cancelar"
+                            >
+                              <X className="w-3.5 h-3.5" />
+                            </button>
+                          </div>
+                        ) : (
+                          <>
+                            <button
+                              type="button"
+                              onClick={() => handleStartEdit(cat)}
+                              className="cat-action-btn edit"
+                              title="Editar categoria"
+                              disabled={isSubmitting}
+                            >
+                              <Pencil className="w-4 h-4" />
+                            </button>
 
-                          <button
-                            type="button"
-                            onClick={() => setDeletingId(cat.id)}
-                            className="cat-action-btn delete"
-                            title="Excluir categoria"
-                            disabled={isSubmitting || isDeleting}
-                          >
-                            <Trash2 className="w-4 h-4" />
-                          </button>
-                        </>
-                      )}
-                    </div>
+                            <button
+                              type="button"
+                              onClick={() => setDeletingId(cat.id)}
+                              className="cat-action-btn delete"
+                              title="Excluir categoria"
+                              disabled={isSubmitting || isDeleting}
+                            >
+                              <Trash2 className="w-4 h-4" />
+                            </button>
+                          </>
+                        )}
+                      </div>
+                    )}
                   </div>
                 );
               })}
