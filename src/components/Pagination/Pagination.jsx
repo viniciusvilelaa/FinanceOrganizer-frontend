@@ -1,65 +1,52 @@
-function getPageNumbers(currentPage, totalPages) {
-  if (totalPages <= 7) {
-    return Array.from({ length: totalPages }, (_, i) => i + 1);
-  }
-
-  if (currentPage <= 3) {
-    return [1, 2, 3, 4, '...', totalPages];
-  }
-
-  if (currentPage >= totalPages - 2) {
-    return [1, '...', totalPages - 3, totalPages - 2, totalPages - 1, totalPages];
-  }
-
-  return [1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages];
-}
+import React from 'react';
+import ReactPaginate from 'react-paginate';
 
 export default function Pagination({ currentPage, totalPages, onPageChange }) {
   if (totalPages <= 1) return null;
 
-  const pages = getPageNumbers(currentPage, totalPages);
+  // Trata o evento de clique do react-paginate (event.selected é baseado em 0)
+  const handlePageClick = (event) => {
+    onPageChange(event.selected + 1);
+  };
 
   return (
-    <div className="flex flex-wrap items-center justify-center gap-2 mt-4">
-      <button
-        onClick={() => onPageChange(currentPage - 1)}
-        disabled={currentPage === 1}
-        className="px-3 py-1.5 rounded-lg border border-gray-200 text-sm font-semibold text-slate-500 bg-white hover:border-[#3870EA] hover:text-[#3870EA] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:border-gray-200 disabled:hover:text-slate-500 transition-all cursor-pointer"
-      >
-        ←
-      </button>
-
-      {pages.map((p, index) => {
-        if (p === '...') {
-          return (
-            <span key={`ellipsis-${index}`} className="px-2 py-1 text-slate-400 font-semibold select-none">
-              ...
-            </span>
-          );
-        }
-
-        return (
-          <button
-            key={p}
-            onClick={() => onPageChange(p)}
-            className={`px-3 py-1.5 rounded-lg border text-sm font-semibold transition-all cursor-pointer
-              ${currentPage === p
-                ? 'bg-[#3870EA] border-[#3870EA] text-white'
-                : 'bg-white border-gray-200 text-slate-500 hover:border-[#3870EA] hover:text-[#3870EA]'
-              }`}
-          >
-            {p}
-          </button>
-        );
-      })}
-
-      <button
-        onClick={() => onPageChange(currentPage + 1)}
-        disabled={currentPage === totalPages}
-        className="px-3 py-1.5 rounded-lg border border-gray-200 text-sm font-semibold text-slate-500 bg-white hover:border-[#3870EA] hover:text-[#3870EA] disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:border-gray-200 disabled:hover:text-slate-500 transition-all cursor-pointer"
-      >
-        →
-      </button>
-    </div>
+    <ReactPaginate
+      // Propriedades principais
+      pageCount={totalPages}
+      forcePage={currentPage - 1} // react-paginate usa índice 0
+      onPageChange={handlePageClick}
+      pageRangeDisplayed={3}
+      marginPagesDisplayed={1}
+      
+      // Rótulos dos botões anterior / próximo / reticências
+      previousLabel="←"
+      nextLabel="→"
+      breakLabel="..."
+      
+      // Classes do container principal
+      containerClassName="flex flex-wrap items-center justify-center gap-2 mt-4 select-none"
+      
+      // Classes dos botões numéricos
+      pageClassName="inline-block"
+      pageLinkClassName="block px-3 py-1.5 rounded-lg border border-gray-200 text-sm font-semibold text-slate-500 bg-white hover:border-[#3870EA] hover:text-[#3870EA] transition-all cursor-pointer"
+      
+      // Classes da página ativa
+      activeClassName="active"
+      activeLinkClassName="!bg-[#3870EA] !border-[#3870EA] !text-white"
+      
+      // Classes dos botões Anterior / Próximo
+      previousClassName="inline-block"
+      previousLinkClassName="block px-3 py-1.5 rounded-lg border border-gray-200 text-sm font-semibold text-slate-500 bg-white hover:border-[#3870EA] hover:text-[#3870EA] transition-all cursor-pointer"
+      nextClassName="inline-block"
+      nextLinkClassName="block px-3 py-1.5 rounded-lg border border-gray-200 text-sm font-semibold text-slate-500 bg-white hover:border-[#3870EA] hover:text-[#3870EA] transition-all cursor-pointer"
+      
+      // Classes para o botão desabilitado (ex: anterior na pág 1)
+      disabledClassName="opacity-40 pointer-events-none"
+      disabledLinkClassName="hover:border-gray-200 hover:text-slate-500 cursor-not-allowed"
+      
+      // Classes das reticências (...)
+      breakClassName="inline-block"
+      breakLinkClassName="block px-2 py-1 text-slate-400 font-semibold cursor-default"
+    />
   );
 }
