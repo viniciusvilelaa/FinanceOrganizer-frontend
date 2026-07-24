@@ -1,5 +1,7 @@
 import React from 'react';
-import ReactPaginate from 'react-paginate';
+import ReactPaginateModule from 'react-paginate';
+
+const ReactPaginate = ReactPaginateModule.default || ReactPaginateModule;
 
 export default function Pagination({ currentPage, totalPages, onPageChange }) {
   if (totalPages <= 1) return null;
