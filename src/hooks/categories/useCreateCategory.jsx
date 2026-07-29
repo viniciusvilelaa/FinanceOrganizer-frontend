@@ -12,7 +12,7 @@ export function useCreateCategory() {
   const { mutateAsync, isPending } = useMutation({
     mutationFn: createCategory,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.finance });
+      queryClient.invalidateQueries({ queryKey: QUERY_KEYS.finance, refetchType: 'all' });
       toast.success("Category Created");
     },
     onError: (error) => {
