@@ -1,12 +1,15 @@
 import { ResponsiveContainer, PieChart, Pie, Cell, Tooltip } from "recharts"
 import { CustomTooltip } from "../ToolTip/CustomToolTip"
 import CategoryPieChartSkeleton from "./CategoryPieChartSkeleton"
+import CategoryPieChartEmpty from "./CategoryPieChartEmpty"
 
 export default function CategoryPieChart({ data, isFetching, error }) {
     
 
-    if (isFetching || data.length === 0) return <CategoryPieChartSkeleton />
+    if (isFetching) return <CategoryPieChartSkeleton />
+    if(data.length === 0) return <CategoryPieChartEmpty/>
     if (error) return `Error: ${error}`
+
 
     return (
         <div className="bg-white rounded-xl p-[25px] text-left  w-full card-container">
