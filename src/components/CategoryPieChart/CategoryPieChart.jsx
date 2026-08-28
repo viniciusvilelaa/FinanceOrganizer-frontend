@@ -5,9 +5,8 @@ import CategoryPieChartSkeleton from "./CategoryPieChartSkeleton"
 export default function CategoryPieChart({ data, isFetching, error }) {
     
 
-    if (isFetching) return <CategoryPieChartSkeleton />
+    if (isFetching || data.length === 0) return <CategoryPieChartSkeleton />
     if (error) return `Error: ${error}`
-    if (!data || data.length === 0) return "Empty data"
 
     return (
         <div className="bg-white rounded-xl p-[25px] text-left  w-full card-container">
